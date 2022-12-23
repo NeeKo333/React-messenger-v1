@@ -1,0 +1,229 @@
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+
+/*--------------------*/
+
+.App {
+  text-align: center;
+}
+
+.registerFormConteiner {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .registerFormWrapper {
+    padding: 20px 20px;
+    width: 400px;
+    margin-bottom: 250px;
+    background-color: aliceblue;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    form {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      input {
+        background-color: rgba($color: #000000, $alpha: 0);
+        border-bottom: 1px solid gray;
+      }
+
+      button {
+        width: 140px;
+        padding: 10px 20px;
+        background-color: bisque;
+        border-radius: 6px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.homePage {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .conteiner {
+    margin-top: 200px;
+    width: 70%;
+    min-height: 90%;
+    margin-bottom: 250px;
+    background-color: aliceblue;
+    border-radius: 6px;
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    .sidebar {
+      flex: 1;
+      background-color: #6495ed;
+      .userInfo {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #4a89fc;
+      }
+      .userSearch {
+        background-color: transparent;
+        width: 100%;
+        padding: 10px 5px;
+        border-bottom: 1px solid grey;
+      }
+
+      .chatList {
+        background-color: #6495ed;
+        .userChat {
+          &:hover {
+            background-color: #a8c1f0;
+            cursor: pointer;
+          }
+          border: 1px solid gray;
+          .userChatUserAvatar {
+            width: 40px;
+            height: 40px;
+            img {
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .chat {
+      flex: 2;
+      background-color: antiquewhite;
+      display: flex;
+      flex-direction: column;
+      .chatHeader {
+        height: 37px;
+        width: 100%;
+        background-color: cornsilk;
+        display: flex;
+        align-items: center;
+        .chatHeaderUserName {
+          font-weight: 600;
+          padding-left: 15px;
+        }
+      }
+      .messages {
+        background-color: azure;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        overflow-y: scroll;
+        .messageInfo {
+          display: flex;
+          .messageUserAvatar {
+            width: 40px;
+            height: 40px;
+            img {
+              max-width: 100%;
+              border-radius: 50%;
+            }
+          }
+          .messageText {
+            background-color: aqua;
+            border-radius: 12px;
+            padding: 10px 15px;
+            max-width: 80%;
+          }
+          &.myMessage {
+            flex-direction: row-reverse;
+          }
+        }
+      }
+      .inputMessageContainer {
+        display: flex;
+        .inputMessage {
+          width: 100%;
+          height: 40px;
+          background-color: #4a89fc;
+          flex: 4;
+        }
+        button {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
