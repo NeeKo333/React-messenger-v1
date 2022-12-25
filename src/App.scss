@@ -152,20 +152,6 @@ img {
 
       .chatList {
         background-color: #6495ed;
-        .userChat {
-          &:hover {
-            background-color: #a8c1f0;
-            cursor: pointer;
-          }
-          border: 1px solid gray;
-          .userChatUserAvatar {
-            width: 40px;
-            height: 40px;
-            img {
-              max-width: 100%;
-            }
-          }
-        }
       }
     }
     .chat {
@@ -222,6 +208,20 @@ img {
         }
         button {
           flex: 1;
+        }
+      }
+    }
+    .userChat {
+      &:hover {
+        background-color: #a8c1f0;
+        cursor: pointer;
+      }
+      border: 1px solid gray;
+      .userChatUserAvatar {
+        width: 40px;
+        height: 40px;
+        img {
+          max-width: 100%;
         }
       }
     }

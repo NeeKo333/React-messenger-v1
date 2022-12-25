@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const navigator = useNavigate();
+
   async function registration(e) {
     e.preventDefault();
     const userName = e.target[0].value;
