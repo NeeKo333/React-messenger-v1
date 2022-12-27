@@ -2,9 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { firestore } from "../..";
 import { AuthContext } from "../..";
+import { ChatContext } from "../../chatContext";
 
 const ChatList = () => {
   const { authUser } = useContext(AuthContext);
+  const { dispatch } = useContext(ChatContext);
   const [chatList, setChatList] = useState([]);
 
   useEffect(() => {
@@ -20,12 +22,19 @@ const ChatList = () => {
     };
   }, [authUser.uid]);
 
+  function peekChat(user) {
+    dispatch({ type: "change_user", payload: user });
+  }
+
   return (
     <div className="chatList">
       {chatList.length > 0 ? (
         chatList.map((chat) => {
           return (
-            <div className="userChat">
+            <div
+              className="userChat"
+              onClick={() => peekChat(chat[1].userInfo)}
+            >
               <div className="userChatInfo">
                 <span className="userChatUserName">
                   {chat[1].userInfo.name}
@@ -35,7 +44,9 @@ const ChatList = () => {
                 </div>
               </div>
               <p className="userChatLastMessage">
-                {chat[1].userInfo.lastMessage?.text}
+                {chat[1].userInfo.lastMessage
+                  ? chat[1].userInfo.lastMessage
+                  : ""}
               </p>
             </div>
           );

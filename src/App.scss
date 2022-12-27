@@ -195,6 +195,14 @@ img {
           }
           &.myMessage {
             flex-direction: row-reverse;
+            .messageUserAvatar {
+              width: 40px;
+              height: 40px;
+              img {
+                max-width: 100%;
+                border-radius: 50%;
+              }
+            }
           }
         }
       }

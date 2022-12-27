@@ -6,6 +6,8 @@ import App from "./App";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { ChatContextProvider } from "./chatContext";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCU7J4ZZtld9-77LjitKKjwmxdK3rQHOXI",
   authDomain: "react-messenger-71c87.firebaseapp.com",
@@ -40,6 +42,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <AuthContextProvider>
-    <App />
+    <ChatContextProvider>
+      <App />
+    </ChatContextProvider>
   </AuthContextProvider>
 );

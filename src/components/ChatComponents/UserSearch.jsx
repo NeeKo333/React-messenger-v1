@@ -55,10 +55,11 @@ const UserSearch = () => {
         [combinedId + ".date"]: serverTimestamp(),
       });
 
+      const user = await getDoc(doc(firestore, "users", authUser.uid));
       await updateDoc(doc(firestore, "userChats", searchedUser.userId), {
         [combinedId + ".userInfo"]: {
           uid: authUser.uid,
-          name: authUser.name,
+          name: user.data().name,
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
