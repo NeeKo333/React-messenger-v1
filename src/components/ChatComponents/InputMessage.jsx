@@ -1,30 +1,22 @@
 import { AuthContext } from "../..";
 import { ChatContext } from "../../chatContext";
 import { useContext, useState } from "react";
-import {
-  arrayUnion,
-  doc,
-  getDoc,
-  Timestamp,
-  updateDoc,
-} from "firebase/firestore";
+import { arrayUnion, doc, Timestamp, updateDoc } from "firebase/firestore";
 import { firestore } from "../..";
 import { v4 as uuid } from "uuid";
 
 const InputMessage = () => {
   const [inputText, setInputText] = useState("");
-  const { authUser } = useContext(AuthContext);
+  const { authUser, userName } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   async function sendMessage(e, message) {
     e.preventDefault();
-    const user = await getDoc(doc(firestore, "users", authUser.uid));
-
     const messageInfo = {
       id: uuid(),
       text: message,
-      ownerName: user.data().name,
-      ownerID: user.data().userId,
+      ownerName: userName,
+      ownerID: authUser.uid,
       date: Timestamp.now(),
     };
 

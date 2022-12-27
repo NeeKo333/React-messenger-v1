@@ -5,7 +5,7 @@ import App from "./App";
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getDoc, getFirestore, doc } from "firebase/firestore";
 import { ChatContextProvider } from "./chatContext";
 
 const firebaseConfig = {
@@ -25,16 +25,21 @@ export const AuthContext = createContext(null);
 
 export const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState("");
-
+  const [userName, setUserName] = useState("dsa");
   useEffect(() => {
     const changeAuthState = onAuthStateChanged(auth, (user) => {
       setAuthUser(user);
+      getDoc(doc(firestore, "users", user.uid)).then((doc) =>
+        setUserName(doc.data().name)
+      );
     });
     return () => changeAuthState();
   });
 
   return (
-    <AuthContext.Provider value={{ authUser }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ authUser, userName }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
