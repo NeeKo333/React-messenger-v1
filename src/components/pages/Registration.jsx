@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, firestore } from "../..";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const navigator = useNavigate();
@@ -39,7 +39,9 @@ const Registration = () => {
     <div className="registerFormConteiner">
       <div className="registerFormWrapper">
         <h2>Registration</h2>
-        <h3>Already have accaunt? Log in</h3>
+        <h3>
+          Already have accaunt? <Link to="/login">Log in</Link>{" "}
+        </h3>
         <form onSubmit={(e) => registration(e)}>
           <input type="text" placeholder="Name" />
           <input type="email" placeholder="Email" />

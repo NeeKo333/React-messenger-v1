@@ -1,7 +1,8 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../..";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Registration from "./Registration";
 const Login = () => {
   const navigator = useNavigate();
   async function login(e) {
@@ -22,7 +23,9 @@ const Login = () => {
     <div className="registerFormConteiner">
       <div className="registerFormWrapper">
         <h2>Login</h2>
-        <h3>Dont have accaunt? Register</h3>
+        <h3>
+          Dont have accaunt? <Link to="/registration">Register</Link>
+        </h3>
         <form onSubmit={(e) => login(e)}>
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />

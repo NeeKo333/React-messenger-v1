@@ -32,6 +32,7 @@ const ChatList = () => {
         chatList.map((chat) => {
           return (
             <div
+              key={chat[0]}
               className="userChat"
               onClick={() => peekChat(chat[1].userInfo)}
             >
