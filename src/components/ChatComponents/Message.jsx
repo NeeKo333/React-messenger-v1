@@ -1,7 +1,13 @@
 import { AuthContext } from "../..";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { firestore } from "../..";
 const Message = ({ messegeInfo }) => {
   const { authUser } = useContext(AuthContext);
+  const [userMessagePhoto, setUserMessagePhoto] = useState("");
+  getDoc(doc(firestore, "users", messegeInfo.ownerID)).then((doc) =>
+    setUserMessagePhoto(doc.data().photoURL)
+  );
   return (
     <div className="message">
       <div
@@ -12,10 +18,7 @@ const Message = ({ messegeInfo }) => {
         }
       >
         <div className="messageUserAvatar">
-          <img
-            src="https://i.pinimg.com/736x/f4/d2/96/f4d2961b652880be432fb9580891ed62.jpg"
-            alt=""
-          />
+          <img src={userMessagePhoto} alt="" />
         </div>
         <span className="messageOwnerName">{messegeInfo.ownerName}</span>
         <span className="messageText">{messegeInfo.text}</span>

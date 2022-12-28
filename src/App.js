@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthContext } from ".";
 import "./App.scss";
 import { publicRoutes, privateRoutes } from "./routes";
-import { useNavigate } from "react-router-dom";
 
 function App() {
   const { authUser } = useContext(AuthContext);

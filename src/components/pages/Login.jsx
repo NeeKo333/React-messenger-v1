@@ -2,7 +2,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../..";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Registration from "./Registration";
 const Login = () => {
   const navigator = useNavigate();
   async function login(e) {

@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 const InputMessage = () => {
   const [inputText, setInputText] = useState("");
-  const { authUser, userName } = useContext(AuthContext);
+  const { authUser, userName, userPhoto } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   async function sendMessage(e, message) {
@@ -16,6 +16,7 @@ const InputMessage = () => {
       id: uuid(),
       text: message,
       ownerName: userName,
+      photoURL: userPhoto,
       ownerID: authUser.uid,
       date: Timestamp.now(),
     };

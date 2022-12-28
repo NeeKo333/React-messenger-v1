@@ -1,19 +1,64 @@
 import { signOut } from "firebase/auth";
 import React, { useContext } from "react";
-import { auth } from "../..";
+import { auth, storage, AuthContext, firestore } from "../..";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../..";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, updateDoc } from "firebase/firestore";
 
 const Navbar = () => {
-  const { userName } = useContext(AuthContext);
+  const { userName, authUser, userPhoto } = useContext(AuthContext);
   const navigator = useNavigate();
+
   function signOutHandler(a) {
     signOut(a);
     navigator("/login");
   }
+
+  function uploadAvatar(e) {
+    e.preventDefault();
+
+    const storageRef = ref(storage, userName);
+
+    const uploadTask = uploadBytesResumable(storageRef, e.target[0].files[0]);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          console.log("File available at", downloadURL);
+          await updateDoc(doc(firestore, "users", authUser.uid), {
+            photoURL: downloadURL,
+          });
+        });
+      }
+    );
+  }
+
   return (
     <div className="userInfo">
       <span className="userName">{userName}</span>
+      <img className="mainUserAvatar" src={userPhoto}></img>
+      <form onSubmit={(e) => uploadAvatar(e)}>
+        <input type="file"></input>
+        <button>Upload Avatar</button>
+      </form>
+
       <button onClick={() => signOutHandler(auth)}>Log out</button>
     </div>
   );

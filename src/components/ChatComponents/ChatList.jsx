@@ -41,7 +41,7 @@ const ChatList = () => {
                   {chat[1].userInfo.name}
                 </span>
                 <div className="userChatUserAvatar">
-                  <img src="https://i.pinimg.com/736x/f4/d2/96/f4d2961b652880be432fb9580891ed62.jpg"></img>
+                  <img src={chat[1].userInfo.photoURL}></img>
                 </div>
               </div>
               <p className="userChatLastMessage">

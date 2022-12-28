@@ -24,6 +24,8 @@ const Registration = () => {
         userId: u.uid,
         name: userName,
         email: userEmail,
+        photoURL:
+          "https://firebasestorage.googleapis.com/v0/b/react-messenger-71c87.appspot.com/o/noavatar.png?alt=media&token=33151ff5-6995-4787-9ed1-ea0f5329eed1",
       });
 
       await setDoc(doc(firestore, "userChats", u.uid), {});
