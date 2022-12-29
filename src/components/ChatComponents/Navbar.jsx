@@ -48,6 +48,8 @@ const Navbar = () => {
         });
       }
     );
+
+    e.target.reset();
   }
 
   return (
@@ -55,10 +57,12 @@ const Navbar = () => {
       <span className="userName">{userName}</span>
       <img className="mainUserAvatar" src={userPhoto}></img>
       <form onSubmit={(e) => uploadAvatar(e)}>
-        <input type="file"></input>
+        <input type="file" id="uploadAvatar" className="hide"></input>
+        <label htmlFor="uploadAvatar">
+          <img className="uploadImg" src="/img/upload.png" alt=""></img>
+        </label>
         <button>Upload Avatar</button>
       </form>
-
       <button onClick={() => signOutHandler(auth)}>Log out</button>
     </div>
   );

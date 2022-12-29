@@ -19,7 +19,7 @@ function App() {
                   element={el.component}
                 ></Route>
               ))
-            : privateRoutes.map((el, index) => (
+            : privateRoutes.map((el) => (
                 <Route
                   key={el.path}
                   path={el.path}

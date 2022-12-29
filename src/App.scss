@@ -70,6 +70,10 @@ img {
 
 /*--------------------*/
 
+.hide {
+  display: none;
+}
+
 .App {
   text-align: center;
 }
@@ -142,6 +146,11 @@ img {
         justify-content: space-between;
         padding: 10px 20px;
         background-color: #4a89fc;
+        .uploadImg {
+          width: 30px;
+          height: 30px;
+          margin: 0px 5px;
+        }
       }
       .userSearch {
         background-color: transparent;
@@ -194,6 +203,10 @@ img {
             padding: 10px 15px;
             max-width: 80%;
           }
+          .messagePhoto {
+            max-width: 100px;
+            max-height: 200px;
+          }
           &.myMessage {
             flex-direction: row-reverse;
             .messageUserAvatar {
@@ -215,6 +228,11 @@ img {
           height: 40px;
           background-color: #4a89fc;
           flex: 4;
+        }
+        .uploadImg {
+          width: 30px;
+          height: 30px;
+          margin: 5px 5px;
         }
         button {
           flex: 1;

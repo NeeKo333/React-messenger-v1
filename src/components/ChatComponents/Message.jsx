@@ -22,6 +22,15 @@ const Message = ({ messegeInfo }) => {
         </div>
         <span className="messageOwnerName">{messegeInfo.ownerName}</span>
         <span className="messageText">{messegeInfo.text}</span>
+        {messegeInfo.messagePhoto ? (
+          <img
+            className="messagePhoto"
+            src={messegeInfo.messagePhoto}
+            alt=""
+          ></img>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
