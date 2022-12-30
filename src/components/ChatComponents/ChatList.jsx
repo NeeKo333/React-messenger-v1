@@ -12,7 +12,14 @@ const ChatList = () => {
     const unsub = onSnapshot(
       doc(firestore, "userChats", authUser.uid),
       (doc) => {
-        setChatList(Object.entries(doc.data()));
+        setChatList(
+          Object.entries(doc.data()).sort((a, b) =>
+            a[1].userInfo.lastChatUpdate.seconds >
+            b[1].userInfo.lastChatUpdate.seconds
+              ? -1
+              : 1
+          )
+        );
       }
     );
 

@@ -1,7 +1,6 @@
-import { AuthContext } from "../..";
+import { AuthContext, firestore } from "../..";
 import { useContext, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { firestore } from "../..";
 const Message = ({ messegeInfo }) => {
   const { authUser } = useContext(AuthContext);
   const [userMessagePhoto, setUserMessagePhoto] = useState("");

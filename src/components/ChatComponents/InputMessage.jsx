@@ -1,8 +1,13 @@
-import { AuthContext, storage } from "../..";
+import { AuthContext, storage, firestore } from "../..";
 import { ChatContext } from "../../chatContext";
 import { useContext, useState } from "react";
-import { arrayUnion, doc, Timestamp, updateDoc } from "firebase/firestore";
-import { firestore } from "../..";
+import {
+  arrayUnion,
+  doc,
+  Timestamp,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -52,10 +57,12 @@ const InputMessage = () => {
 
               await updateDoc(doc(firestore, "userChats", authUser.uid), {
                 [data.chatId + ".userInfo.lastMessage"]: inputText,
+                [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
               });
 
               await updateDoc(doc(firestore, "userChats", data.user.uid), {
                 [data.chatId + ".userInfo.lastMessage"]: inputText,
+                [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
               });
 
               setInputText("");
@@ -84,10 +91,12 @@ const InputMessage = () => {
 
         await updateDoc(doc(firestore, "userChats", authUser.uid), {
           [data.chatId + ".userInfo.lastMessage"]: inputText,
+          [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
         });
 
         await updateDoc(doc(firestore, "userChats", data.user.uid), {
           [data.chatId + ".userInfo.lastMessage"]: inputText,
+          [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
         });
 
         setInputText("");
