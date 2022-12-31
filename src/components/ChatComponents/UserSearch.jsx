@@ -53,6 +53,7 @@ const UserSearch = () => {
           name: searchedUser.name,
           photoURL: searchedUser.photoURL,
           lastChatUpdate: serverTimestamp(),
+          lastCheckTime: serverTimestamp(),
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
@@ -64,6 +65,7 @@ const UserSearch = () => {
           name: user.data().name,
           photoURL: user.data().photoURL,
           lastChatUpdate: serverTimestamp(),
+          lastCheckTime: serverTimestamp(),
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
