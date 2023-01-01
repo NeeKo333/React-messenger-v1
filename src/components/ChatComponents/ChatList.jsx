@@ -3,7 +3,6 @@ import {
   doc,
   getDoc,
   onSnapshot,
-  serverTimestamp,
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
@@ -14,7 +13,7 @@ const ChatList = () => {
   const { authUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
   const [chatList, setChatList] = useState([]);
-  const [test, setTest] = useState([]);
+  const [unreadMessages, setUnreadMessages] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -77,7 +76,7 @@ const ChatList = () => {
       }
       return res;
     }
-    unreadMessages().then((data) => setTest(data));
+    unreadMessages().then((data) => setUnreadMessages(data));
   }, [chatList]);
 
   return (
@@ -95,7 +94,7 @@ const ChatList = () => {
                   {chat[1].userInfo.name}
                 </span>
                 <div className="userChatUserAvatar">
-                  <img src={chat[1].userInfo.photoURL}></img>
+                  <img src={chat[1].userInfo.photoURL} alt=""></img>
                 </div>
               </div>
               <p className="userChatLastMessage">
@@ -104,7 +103,9 @@ const ChatList = () => {
                   : ""}
               </p>
               <span className="userChatUnreadMessages">
-                {test[index] ? test[index].length : ""}
+                {unreadMessages[index] && unreadMessages[index].length > 0
+                  ? unreadMessages[index].length
+                  : ""}
               </span>
             </div>
           );

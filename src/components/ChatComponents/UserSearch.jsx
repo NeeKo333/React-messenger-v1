@@ -88,7 +88,7 @@ const UserSearch = () => {
           <div className="userChatInfo">
             <span className="userChatUserName">{searchedUser.name}</span>
             <div className="userChatUserAvatar">
-              <img src="https://i.pinimg.com/736x/f4/d2/96/f4d2961b652880be432fb9580891ed62.jpg"></img>
+              <img src={searchedUser.photoURL} alt=""></img>
             </div>
           </div>
         </div>

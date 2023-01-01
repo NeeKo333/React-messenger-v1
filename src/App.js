@@ -7,6 +7,7 @@ import { publicRoutes, privateRoutes } from "./routes";
 
 function App() {
   const { authUser } = useContext(AuthContext);
+  console.log("app");
   return (
     <div className="App">
       <BrowserRouter>

@@ -10,16 +10,17 @@ import {
 } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import EmojiPicker from "emoji-picker-react";
 
 const InputMessage = () => {
   const [inputText, setInputText] = useState("");
   const [inputFile, setInputFile] = useState("");
+  const [showEmoji, setShowEmoji] = useState(false);
   const { authUser, userName, userPhoto } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   async function sendMessage(e, message) {
     e.preventDefault();
-
     if (inputFile) {
       sendImgAndText();
     } else {
@@ -104,28 +105,47 @@ const InputMessage = () => {
     }
   }
 
+  function emojiPeek(e) {
+    setInputText(inputText + e.emoji);
+  }
+
+  console.log("input");
   return (
-    <form
-      onSubmit={(e) => sendMessage(e, inputText)}
-      className="inputMessageContainer"
-    >
-      <input
-        onChange={(e) => setInputText(e.target.value)}
-        value={inputText}
-        className="inputMessage"
-        placeholder="Enter message"
-      ></input>
-      <input
-        className="hide"
-        onChange={(e) => setInputFile(e.target.files[0])}
-        type="file"
-        id="uploadImg"
-      ></input>
-      <label htmlFor="uploadImg">
-        <img src="/img/upload.png" alt="" className="uploadImg"></img>
-      </label>
-      <button className="sendMessage">Send</button>
-    </form>
+    <>
+      <form
+        onSubmit={(e) => sendMessage(e, inputText)}
+        className="inputMessageContainer"
+      >
+        <input
+          onChange={(e) => setInputText(e.target.value)}
+          value={inputText}
+          className="inputMessage"
+          placeholder="Enter message"
+        ></input>
+        <input
+          className="hide"
+          onChange={(e) => setInputFile(e.target.files[0])}
+          type="file"
+          id="uploadImg"
+        ></input>
+        <label htmlFor="uploadImg">
+          <img src="/img/upload.png" alt="" className="uploadImg"></img>
+        </label>
+        <button className="sendMessage">Send</button>
+      </form>
+      <button className="emoji" onClick={() => setShowEmoji(!showEmoji)}>
+        Emoji
+      </button>
+      {showEmoji && (
+        <EmojiPicker
+          onEmojiClick={emojiPeek}
+          searchDisabled={true}
+          emojiStyle="twitter "
+          skinTonesDisabled={true}
+          lazyLoadEmojis={true}
+        />
+      )}
+    </>
   );
 };
 
