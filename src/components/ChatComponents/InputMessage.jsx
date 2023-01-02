@@ -109,7 +109,6 @@ const InputMessage = () => {
     setInputText(inputText + e.emoji);
   }
 
-  console.log("input");
   return (
     <>
       <form
@@ -133,14 +132,14 @@ const InputMessage = () => {
         </label>
         <button className="sendMessage">Send</button>
       </form>
-      <button className="emoji" onClick={() => setShowEmoji(!showEmoji)}>
+      <button className="emojiBtn" onClick={() => setShowEmoji(!showEmoji)}>
         Emoji
       </button>
       {showEmoji && (
         <EmojiPicker
           onEmojiClick={emojiPeek}
           searchDisabled={true}
-          emojiStyle="twitter "
+          emojiStyle="twitter"
           skinTonesDisabled={true}
           lazyLoadEmojis={true}
         />

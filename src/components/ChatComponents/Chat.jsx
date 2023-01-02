@@ -5,6 +5,10 @@ import { ChatContext } from "../../chatContext";
 
 const Chat = () => {
   const { data } = useContext(ChatContext);
+  console.log(data);
+  if (data.chatId === "null") {
+    return <h2>Select chat</h2>;
+  }
 
   return (
     <div className="chat">

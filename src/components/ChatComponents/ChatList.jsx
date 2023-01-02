@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import { firestore, AuthContext } from "../..";
 import { ChatContext } from "../../chatContext";
+import Twemoji from "react-twemoji";
 
 const ChatList = () => {
   const { authUser } = useContext(AuthContext);
@@ -80,40 +81,42 @@ const ChatList = () => {
   }, [chatList]);
 
   return (
-    <div className="chatList">
-      {chatList.length > 0 ? (
-        chatList.map((chat, index) => {
-          return (
-            <div
-              key={chat[0]}
-              className="userChat"
-              onClick={() => peekChat(chat[1].userInfo)}
-            >
-              <div className="userChatInfo">
-                <span className="userChatUserName">
-                  {chat[1].userInfo.name}
-                </span>
-                <div className="userChatUserAvatar">
-                  <img src={chat[1].userInfo.photoURL} alt=""></img>
+    <Twemoji>
+      <div className="chatList">
+        {chatList.length > 0 ? (
+          chatList.map((chat, index) => {
+            return (
+              <div
+                key={chat[0]}
+                className="userChat"
+                onClick={() => peekChat(chat[1].userInfo)}
+              >
+                <div className="userChatInfo">
+                  <span className="userChatUserName">
+                    {chat[1].userInfo.name}
+                  </span>
+                  <div className="userChatUserAvatar">
+                    <img src={chat[1].userInfo.photoURL} alt=""></img>
+                  </div>
                 </div>
+                <p className="userChatLastMessage">
+                  {chat[1].userInfo.lastMessage
+                    ? chat[1].userInfo.lastMessage
+                    : ""}
+                </p>
+                <span className="userChatUnreadMessages">
+                  {unreadMessages[index] && unreadMessages[index].length > 0
+                    ? unreadMessages[index].length
+                    : ""}
+                </span>
               </div>
-              <p className="userChatLastMessage">
-                {chat[1].userInfo.lastMessage
-                  ? chat[1].userInfo.lastMessage
-                  : ""}
-              </p>
-              <span className="userChatUnreadMessages">
-                {unreadMessages[index] && unreadMessages[index].length > 0
-                  ? unreadMessages[index].length
-                  : ""}
-              </span>
-            </div>
-          );
-        })
-      ) : (
-        <h3>No chats</h3>
-      )}
-    </div>
+            );
+          })
+        ) : (
+          <h3>No chats</h3>
+        )}
+      </div>
+    </Twemoji>
   );
 };
 

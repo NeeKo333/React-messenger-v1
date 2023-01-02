@@ -74,6 +74,10 @@ img {
   display: none;
 }
 
+.emoji,
+.twemoji {
+  max-width: 20px;
+}
 .App {
   text-align: center;
 }
