@@ -1,6 +1,7 @@
 import { AuthContext, firestore } from "../..";
 import { useContext, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
+import moment from "moment";
 import Twemoji from "react-twemoji";
 
 const Message = ({ messegeInfo }) => {
@@ -9,6 +10,12 @@ const Message = ({ messegeInfo }) => {
   getDoc(doc(firestore, "users", messegeInfo.ownerID)).then((doc) =>
     setUserMessagePhoto(doc.data().photoURL)
   );
+
+  function getTime(seconds) {
+    return moment(seconds * 1000)
+      .startOf("minutes")
+      .fromNow();
+  }
   return (
     <Twemoji options={{ className: "twemoji" }}>
       <div className="message">
@@ -33,6 +40,9 @@ const Message = ({ messegeInfo }) => {
           ) : (
             ""
           )}
+          <span className="messageTime">
+            {getTime(messegeInfo.date.seconds)}
+          </span>
         </div>
       </div>
     </Twemoji>
