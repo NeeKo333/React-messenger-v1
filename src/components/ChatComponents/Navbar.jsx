@@ -29,7 +29,6 @@ const Navbar = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-          console.log("File available at", downloadURL);
           await updateDoc(doc(firestore, "users", authUser.uid), {
             photoURL: downloadURL,
           });

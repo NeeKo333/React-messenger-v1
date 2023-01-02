@@ -38,6 +38,7 @@ const UserSearch = () => {
       authUser.uid > searchedUser.userId
         ? authUser.uid + searchedUser.userId
         : searchedUser.userId + authUser.uid;
+
     const response = await getDoc(
       doc(firestore, "privateChatsWithTwoUsers", combinedId)
     );
@@ -59,6 +60,7 @@ const UserSearch = () => {
       });
 
       const user = await getDoc(doc(firestore, "users", authUser.uid));
+
       await updateDoc(doc(firestore, "userChats", searchedUser.userId), {
         [combinedId + ".userInfo"]: {
           uid: authUser.uid,
@@ -74,6 +76,7 @@ const UserSearch = () => {
     setSearchUserName("");
     setSearchedUser({});
   }
+
   return (
     <div>
       <input

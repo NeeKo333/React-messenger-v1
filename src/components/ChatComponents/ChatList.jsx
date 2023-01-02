@@ -12,9 +12,10 @@ import Twemoji from "react-twemoji";
 
 const ChatList = () => {
   const { authUser } = useContext(AuthContext);
-  const { dispatch } = useContext(ChatContext);
+  const { dispatch, data } = useContext(ChatContext);
   const [chatList, setChatList] = useState([]);
   const [unreadMessages, setUnreadMessages] = useState([]);
+  const [avatars, setAvatars] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -71,13 +72,24 @@ const ChatList = () => {
               (el) =>
                 el.date.seconds >
                   response2.data()[combinedId].userInfo.lastCheckTime.seconds &&
-                el.ownerID !== authUser.uid
+                el.ownerID !== authUser.uid &&
+                el.ownerID !== data.user.uid
             )
         );
       }
       return res;
     }
+    async function getPhotos() {
+      let res = [];
+      for (let i = 0; i < chatList.length; i++) {
+        const user = chatList[i][1].userInfo;
+        const response = await getDoc(doc(firestore, "users", user.uid));
+        res.push(response.data().photoURL);
+      }
+      return res;
+    }
     unreadMessages().then((data) => setUnreadMessages(data));
+    getPhotos().then((data) => setAvatars(data));
   }, [chatList]);
 
   return (
@@ -96,7 +108,7 @@ const ChatList = () => {
                     {chat[1].userInfo.name}
                   </span>
                   <div className="userChatUserAvatar">
-                    <img src={chat[1].userInfo.photoURL} alt=""></img>
+                    <img src={avatars[index]} alt=""></img>
                   </div>
                 </div>
                 <p className="userChatLastMessage">

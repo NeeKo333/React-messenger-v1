@@ -21,11 +21,7 @@ const InputMessage = () => {
 
   async function sendMessage(e, message) {
     e.preventDefault();
-    if (inputFile) {
-      sendImgAndText();
-    } else {
-      sendText();
-    }
+    inputFile ? sendImgAndText() : sendText();
 
     function sendImgAndText() {
       const storageRef = ref(storage, uuid());

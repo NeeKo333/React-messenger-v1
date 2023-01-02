@@ -16,6 +16,7 @@ const Message = ({ messegeInfo }) => {
       .startOf("minutes")
       .fromNow();
   }
+
   return (
     <Twemoji options={{ className: "twemoji" }}>
       <div className="message">
