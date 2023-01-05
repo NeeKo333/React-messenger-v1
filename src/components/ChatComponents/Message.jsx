@@ -21,6 +21,8 @@ const Message = ({ messegeInfo }) => {
     <Twemoji options={{ className: "twemoji" }}>
       <div className="message">
         <div
+          id={messegeInfo.id}
+          data-owner={messegeInfo.ownerID}
           className={
             messegeInfo.ownerID === authUser.uid
               ? "messageInfo message myMessage"
