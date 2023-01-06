@@ -25,7 +25,9 @@ const UserSearch = () => {
       try {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((user) => {
-          setSearchedUser(user.data());
+          if (user.data().userId !== authUser.uid) {
+            setSearchedUser(user.data());
+          }
         });
       } catch (error) {
         console.log("error.message");
@@ -96,7 +98,7 @@ const UserSearch = () => {
           </div>
         </div>
       ) : (
-        <h4>No user searched</h4>
+        ""
       )}
     </div>
   );

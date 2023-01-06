@@ -86,22 +86,43 @@ img {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background-color: bisque;
+  background-color: #fdfaf4;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
+  img {
+    max-width: 150px;
+    max-height: 100px;
+  }
   .registerFormWrapper {
     padding: 20px 20px;
-    width: 400px;
+    width: 500px;
     margin-bottom: 250px;
-    background-color: aliceblue;
+    background-color: inherit;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    h2 {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 39px;
+      color: #7d4008;
+    }
+    h3 {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 39px;
+      color: #7d4008;
+    }
     form {
+      padding-top: 30px;
       margin-bottom: 10px;
       display: flex;
       flex-direction: column;
@@ -114,9 +135,31 @@ img {
       button {
         width: 140px;
         padding: 10px 20px;
-        background-color: bisque;
+        background-color: #ffe4c4;
         border-radius: 6px;
         margin: 0 auto;
+        &:hover {
+          background-color: rgba($color: #ecb26a, $alpha: 0.7);
+        }
+      }
+    }
+    .copyInfo {
+      padding-top: 25px;
+      position: relative;
+      font-family: "Lusitana";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 21px;
+      letter-spacing: 0.215em;
+      color: #000000;
+      .lang {
+        position: absolute;
+        left: 0;
+        cursor: pointer;
+      }
+      .footerName {
+        padding: auto;
       }
     }
   }
@@ -145,16 +188,66 @@ img {
 
     .sidebar {
       flex: 1;
-      background-color: #6495ed;
+      background-color: #fdfaf4;
       .userInfo {
         display: flex;
+        align-items: center;
+        justify-content: center;
         justify-content: space-between;
         padding: 10px 20px;
-        background-color: #4a89fc;
+        background-color: #fdfaf4;
+        .userInfoConteiner {
+          display: flex;
+
+          .userNameAndAvatarConteiner {
+            display: flex;
+            gap: 10px;
+            .mainUserAvatar {
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              margin-left: 5px;
+            }
+            .userName {
+              font-family: "Montserrat";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 20px;
+              line-height: 24px;
+              color: #7d4008;
+            }
+          }
+          .userUploadAvatarConteiner {
+            padding-left: 10px;
+            form {
+              display: flex;
+              flex-direction: column;
+              label {
+                text-align: left;
+                img {
+                  max-width: 25px;
+                  max-height: 25px;
+                }
+              }
+              button {
+                padding: 3px 5px;
+                background-color: #ffe4c4;
+                border-radius: 3px;
+                margin: 0 auto;
+                &:hover {
+                  background-color: rgba($color: #ecb26a, $alpha: 0.7);
+                }
+              }
+            }
+          }
+        }
         .uploadImg {
           width: 30px;
           height: 30px;
           margin: 0px 5px;
+        }
+        a {
+          cursor: pointer;
         }
       }
       .userSearch {
@@ -162,60 +255,54 @@ img {
         width: 100%;
         padding: 10px 5px;
         border-bottom: 1px solid grey;
+        .userChat {
+          padding-bottom: 20px;
+        }
       }
 
       .chatList {
-        background-color: #6495ed;
+        margin-top: 20px;
+        background-color: #fdfaf4;
       }
     }
     .chat {
       flex: 2;
-      background-color: antiquewhite;
+      background-color: #fdfaf4;
       display: flex;
       flex-direction: column;
+      border-left: 1px solid grey;
 
       .chatHeader {
-        height: 37px;
+        min-height: 80px;
         width: 100%;
-        background-color: cornsilk;
+        background-color: inherit;
         display: flex;
         align-items: center;
+        border-bottom: 1px solid gray;
         .chatHeaderUserName {
           font-weight: 600;
           padding-left: 15px;
         }
       }
       .messages {
-        background-color: azure;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: inherit;
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
         gap: 15px;
         overflow-y: scroll;
         position: relative;
-        .messageInfo {
-          display: flex;
-          .messageUserAvatar {
-            width: 40px;
-            height: 40px;
-            img {
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-            }
+        .message {
+          padding: 5px 0px;
+          &:hover {
+            background-color: rgba($color: #f7e9cc, $alpha: 1);
+            cursor: pointer;
           }
-          .messageText {
-            background-color: aqua;
-            border-radius: 12px;
-            padding: 10px 15px;
-            max-width: 80%;
-          }
-          .messagePhoto {
-            max-width: 100px;
-            max-height: 200px;
-          }
-          &.myMessage {
-            flex-direction: row-reverse;
+          .messageInfo {
+            display: flex;
             .messageUserAvatar {
               width: 40px;
               height: 40px;
@@ -225,8 +312,31 @@ img {
                 border-radius: 50%;
               }
             }
+            .messageText {
+              background-color: aqua;
+              border-radius: 12px;
+              padding: 10px 15px;
+              max-width: 80%;
+            }
+            .messagePhoto {
+              max-width: 100px;
+              max-height: 200px;
+            }
+            &.myMessage {
+              flex-direction: row-reverse;
+              .messageUserAvatar {
+                width: 40px;
+                height: 40px;
+                img {
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                }
+              }
+            }
           }
         }
+
         .EditMessagePopup {
           position: fixed;
           right: 550px;
@@ -240,30 +350,46 @@ img {
           align-items: center;
         }
       }
-      .inputMessageContainer {
-        display: flex;
-        .inputMessage {
-          width: 100%;
-          height: 40px;
-          background-color: #4a89fc;
-          flex: 4;
-        }
-        .uploadImg {
-          width: 30px;
-          height: 30px;
-          margin: 5px 5px;
-        }
-        button {
-          flex: 1;
+      .inputMessageWrapper {
+        border-top: 1px solid grey;
+        gap: 10px;
+        .inputMessageContainer {
+          display: flex;
+          .inputMessage {
+            flex: 8;
+            width: 100%;
+            height: 40px;
+            background-color: inherit;
+          }
+          .uploadImg {
+            flex: 1;
+            width: 30px;
+            height: 30px;
+            margin: 5px 5px;
+          }
+          .emojiBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            img {
+              max-width: 25px;
+            }
+          }
+          button {
+            flex: 1;
+            width: 100px;
+          }
         }
       }
     }
     .userChat {
       &:hover {
-        background-color: #a8c1f0;
+        background-color: #ffe179;
         cursor: pointer;
       }
-      border: 1px solid gray;
+      height: 80px;
+      border-bottom: 1px solid gray;
       .userChatUserAvatar {
         width: 40px;
         height: 40px;
@@ -275,12 +401,5 @@ img {
         }
       }
     }
-  }
-
-  .mainUserAvatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-left: 5px;
   }
 }

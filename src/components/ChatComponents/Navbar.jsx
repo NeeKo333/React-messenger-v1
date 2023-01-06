@@ -40,16 +40,24 @@ const Navbar = () => {
 
   return (
     <div className="userInfo">
-      <span className="userName">{userName}</span>
-      <img className="mainUserAvatar" src={userPhoto} alt=""></img>
-      <form onSubmit={(e) => uploadAvatar(e)}>
-        <input type="file" id="uploadAvatar" className="hide"></input>
-        <label htmlFor="uploadAvatar">
-          <img className="uploadImg" src="/img/upload.png" alt=""></img>
-        </label>
-        <button>Upload Avatar</button>
-      </form>
-      <button onClick={() => signOutHandler(auth)}>Log out</button>
+      <div className="userInfoConteiner">
+        <div className="userNameAndAvatarConteiner">
+          <img className="mainUserAvatar" src={userPhoto} alt=""></img>
+          <span className="userName">{userName}</span>
+        </div>
+        <div className="userUploadAvatarConteiner">
+          <form onSubmit={(e) => uploadAvatar(e)}>
+            <input type="file" id="uploadAvatar" className="hide"></input>
+            <label htmlFor="uploadAvatar">
+              <img className="uploadImg" src="/img/upload.png" alt=""></img>
+            </label>
+            <button>Upload Avatar</button>
+          </form>
+        </div>
+      </div>
+      <a onClick={() => signOutHandler(auth)}>
+        <img src="/img/logout.svg"></img>
+      </a>
     </div>
   );
 };

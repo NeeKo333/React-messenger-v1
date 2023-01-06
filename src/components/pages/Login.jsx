@@ -18,18 +18,24 @@ const Login = () => {
       console.log(errorMessage);
     }
   }
+
   return (
     <div className="registerFormConteiner">
+      <img src="/img/logo.svg" alt="logo"></img>
       <div className="registerFormWrapper">
         <h2>Login</h2>
         <h3>
-          Dont have accaunt? <Link to="/registration">Register</Link>
+          Don't have account? <Link to="/registration">Register</Link>
         </h3>
         <form onSubmit={(e) => login(e)}>
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <button>Login</button>
         </form>
+        <div className="copyInfo">
+          <p className="lang">EN</p>
+          <p className="footerName">CHEESE</p>
+        </div>
       </div>
     </div>
   );

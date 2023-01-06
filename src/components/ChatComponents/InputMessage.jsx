@@ -19,7 +19,8 @@ const InputMessage = () => {
   const { authUser, userName, userPhoto } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
-  async function sendMessage(e, message) {
+  async function sendMessage(e, inputMessage) {
+    const message = inputMessage;
     e.preventDefault();
     inputFile ? sendImgAndText() : sendText();
 
@@ -71,6 +72,7 @@ const InputMessage = () => {
     }
 
     async function sendText() {
+      setInputText("");
       const messageInfo = {
         id: uuid(),
         text: message,
@@ -95,8 +97,6 @@ const InputMessage = () => {
           [data.chatId + ".userInfo.lastMessage"]: inputText,
           [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
         });
-
-        setInputText("");
       }
     }
   }
@@ -106,7 +106,7 @@ const InputMessage = () => {
   }
 
   return (
-    <>
+    <div className="inputMessageWrapper">
       <form
         onSubmit={(e) => sendMessage(e, inputText)}
         className="inputMessageContainer"
@@ -126,21 +126,21 @@ const InputMessage = () => {
         <label htmlFor="uploadImg">
           <img src="/img/upload.png" alt="" className="uploadImg"></img>
         </label>
+        <a className="emojiBtn" onClick={() => setShowEmoji(!showEmoji)}>
+          <img src="/img/emoji.png"></img>
+        </a>
+        {showEmoji && (
+          <EmojiPicker
+            onEmojiClick={emojiPeek}
+            searchDisabled={true}
+            emojiStyle="twitter"
+            skinTonesDisabled={true}
+            lazyLoadEmojis={true}
+          />
+        )}
         <button className="sendMessage">Send</button>
       </form>
-      <button className="emojiBtn" onClick={() => setShowEmoji(!showEmoji)}>
-        Emoji
-      </button>
-      {showEmoji && (
-        <EmojiPicker
-          onEmojiClick={emojiPeek}
-          searchDisabled={true}
-          emojiStyle="twitter"
-          skinTonesDisabled={true}
-          lazyLoadEmojis={true}
-        />
-      )}
-    </>
+    </div>
   );
 };
 

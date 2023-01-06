@@ -39,7 +39,6 @@ const ChatList = () => {
 
   async function peekChat(user) {
     dispatch({ type: "change_user", payload: user });
-
     const combinedId =
       authUser.uid > user.uid
         ? authUser.uid + user.uid
