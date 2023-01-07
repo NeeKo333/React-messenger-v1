@@ -29,23 +29,29 @@ const Message = ({ messegeInfo }) => {
               : " messageInfo message"
           }
         >
-          <div className="messageUserAvatar">
-            <img src={userMessagePhoto} alt="" />
+          <div className="messageUserBody">
+            <span className="messageOwnerName">{messegeInfo.ownerName}</span>
+            <div className="messageUserAvatar">
+              <img src={userMessagePhoto} alt="" />
+            </div>
           </div>
-          <span className="messageOwnerName">{messegeInfo.ownerName}</span>
-          <span className="messageText">{messegeInfo.text}</span>
-          {messegeInfo.messagePhoto ? (
-            <img
-              className="messagePhoto"
-              src={messegeInfo.messagePhoto}
-              alt=""
-            ></img>
-          ) : (
-            ""
-          )}
-          <span className="messageTime">
-            {getTime(messegeInfo.date.seconds)}
-          </span>
+          <div className="messageBody">
+            <div className="messageContent">
+              <div className="messageText">{messegeInfo.text}</div>
+              {messegeInfo.messagePhoto ? (
+                <img
+                  className="messagePhoto"
+                  src={messegeInfo.messagePhoto}
+                  alt=""
+                ></img>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="messageTime">
+              {getTime(messegeInfo.date.seconds)}
+            </div>
+          </div>
         </div>
       </div>
     </Twemoji>
