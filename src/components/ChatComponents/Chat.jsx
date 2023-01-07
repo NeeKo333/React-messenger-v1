@@ -25,11 +25,8 @@ const Chat = () => {
     } else await dispatch({ type: "reset", payload: authUser });
   }
 
-  if (data.chatId === "null") {
-    return <div></div>;
-  }
-
   async function deleteChat() {
+    await dispatch({ type: "reset", payload: authUser });
     const secondUserUid = await (
       await getDoc(doc(firestore, "userChats", authUser.uid))
     ).data()[data.chatId].userInfo.uid;
@@ -41,16 +38,19 @@ const Chat = () => {
       [data.chatId]: deleteField(),
     });
     await deleteDoc(doc(firestore, "privateChatsWithTwoUsers", data.chatId));
-
-    await dispatch({ type: "reset", payload: authUser });
   }
+
+  if (data.chatId === "null") {
+    return <div></div>;
+  }
+
   return (
     <div onClick={updateCheckTime} className="chat">
       <div className="chatHeader">
         <span className="chatHeaderUserName">{data.user?.name}</span>
-        <button className="deleteChat" onClick={deleteChat}>
-          deleteChat
-        </button>
+        <a className="deleteChat" onClick={deleteChat}>
+          <img src="/img/deleteChat.svg"></img>
+        </a>
       </div>
       <Messages></Messages>
       <InputMessage></InputMessage>
