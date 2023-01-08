@@ -33,7 +33,10 @@ const Messages = () => {
       e.target.closest(".message").dataset.owner === authUser.uid
     ) {
       setPopup(true);
-      setCurrentMessage(e.target.closest(".message").id);
+      setCurrentMessage({
+        id: e.target.closest(".message").id,
+        text: e.target.innerText,
+      });
     }
   }
 
@@ -43,8 +46,17 @@ const Messages = () => {
       doc(firestore, "privateChatsWithTwoUsers", chatId)
     );
     const updatedArray = [...message.data().messages];
-    const index = updatedArray.findIndex((el) => el.id === currentMessage);
+    const index = updatedArray.findIndex((el) => el.id === currentMessage.id);
     updatedArray[index].text = newText;
+
+    if (index === updatedArray.length - 1) {
+      updateDoc(doc(firestore, "userChats", authUser.uid), {
+        [data.chatId + ".userInfo.lastMessage"]: newText,
+      });
+      updateDoc(doc(firestore, "userChats", data.user.uid), {
+        [data.chatId + ".userInfo.lastMessage"]: newText,
+      });
+    }
 
     await updateDoc(doc(firestore, "privateChatsWithTwoUsers", chatId), {
       messages: updatedArray,
@@ -67,6 +79,7 @@ const Messages = () => {
       {popup && (
         <EditMessagePopup
           submitHandler={updateMessage}
+          currentText={currentMessage.text}
           closePopup={() => setPopup(false)}
         />
       )}

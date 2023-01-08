@@ -1,4 +1,7 @@
-const EditMessagePopup = ({ submitHandler, closePopup }) => {
+import { useState } from "react";
+
+const EditMessagePopup = ({ submitHandler, closePopup, currentText }) => {
+  const [previousText, setPreviousTex] = useState(currentText);
   return (
     <div
       onClick={(e) => {
@@ -11,6 +14,8 @@ const EditMessagePopup = ({ submitHandler, closePopup }) => {
           className="editMessageInput"
           type="text"
           placeholder="Edit message"
+          value={previousText}
+          onChange={(e) => setPreviousTex(e.target.value)}
         ></input>
       </form>
     </div>

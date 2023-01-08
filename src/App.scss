@@ -246,6 +246,7 @@ img {
           width: 30px;
           height: 30px;
           margin: 0px 5px;
+          cursor: pointer;
         }
         a {
           cursor: pointer;
@@ -289,17 +290,18 @@ img {
     }
     .chat {
       flex: 2;
-      max-width: 880px;
+      width: 880px;
       background-color: #fdfaf4;
       display: flex;
       flex-direction: column;
       border-left: 1px solid grey;
-
+      position: relative;
       .chatHeader {
         min-height: 80px;
         width: 100%;
         background-color: inherit;
         display: flex;
+        justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid gray;
         .chatHeaderUserName {
@@ -307,8 +309,11 @@ img {
           padding-left: 15px;
         }
         .deleteChat {
+          margin-right: 15px;
           width: 20px;
           height: 20px;
+          background: none;
+          cursor: pointer;
         }
       }
       .messages {
@@ -417,19 +422,6 @@ img {
             }
           }
         }
-
-        .EditMessagePopup {
-          position: fixed;
-          right: 550px;
-          top: 40vh;
-          width: 250px;
-          height: 100px;
-          background-color: rgba($color: #000000, $alpha: 0.3);
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
       }
       .inputMessageWrapper {
         border-top: 1px solid grey;
@@ -447,12 +439,14 @@ img {
             width: 30px;
             height: 30px;
             margin: 5px 5px;
+            cursor: pointer;
           }
           .emojiBtn {
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 15px;
+            cursor: pointer;
             img {
               max-width: 25px;
             }
@@ -461,7 +455,25 @@ img {
             flex: 1;
             width: 100px;
           }
+          .EmojiPickerReact {
+            position: absolute !important;
+            bottom: 40px !important;
+            right: 90px !important;
+            width: 300px !important;
+          }
         }
+      }
+      .EditMessagePopup {
+        position: fixed;
+        right: 550px;
+        top: 40vh;
+        width: 250px;
+        height: 100px;
+        background-color: rgba($color: #000000, $alpha: 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

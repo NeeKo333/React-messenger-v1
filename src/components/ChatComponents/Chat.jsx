@@ -41,7 +41,7 @@ const Chat = () => {
   }
 
   if (data.chatId === "null") {
-    return <div></div>;
+    return <div className="chat"></div>;
   }
 
   return (
