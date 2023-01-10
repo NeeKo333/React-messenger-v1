@@ -115,11 +115,13 @@ const ChatList = () => {
                     ? chat[1].userInfo.lastMessage
                     : ""}
                 </p>
-                <span className="userChatUnreadMessages">
-                  {unreadMessages[index] && unreadMessages[index].length > 0
-                    ? unreadMessages[index].length
-                    : ""}
-                </span>
+                {unreadMessages[index] && unreadMessages[index].length > 0 ? (
+                  <span className="userChatUnreadMessages">
+                    {unreadMessages[index].length}
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
             );
           })

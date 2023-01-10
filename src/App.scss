@@ -186,8 +186,38 @@ img {
     border-radius: 8px;
     overflow: hidden;
 
+    .userSearchConteiner {
+      .userSearchedChat {
+        max-width: 100%;
+        overflow: hidden;
+        height: 80px;
+        border-bottom: 1px solid gray;
+        cursor: pointer;
+        background-color: #ffe4c4;
+      }
+      .userChatInfo {
+        .userSearchedChatUserAvatar {
+          width: 40px;
+          height: 40px;
+
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 5px;
+          }
+        }
+      }
+      .userSearch {
+        background-color: transparent;
+        width: 100%;
+        padding: 10px 5px;
+        border-bottom: 1px solid grey;
+      }
+    }
+
     .sidebar {
-      flex: 1;
+      flex: 1 0 auto;
       background-color: #fdfaf4;
       max-width: 348px;
       .userInfo {
@@ -199,9 +229,13 @@ img {
         background-color: #fdfaf4;
         .userInfoConteiner {
           display: flex;
+          flex-direction: column;
+          gap: 10px;
 
           .userNameAndAvatarConteiner {
             display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 10px;
             .mainUserAvatar {
               width: 80px;
@@ -219,10 +253,8 @@ img {
             }
           }
           .userUploadAvatarConteiner {
-            padding-left: 10px;
             form {
               display: flex;
-              flex-direction: column;
               label {
                 text-align: left;
                 img {
@@ -250,31 +282,38 @@ img {
         }
         a {
           cursor: pointer;
-        }
-      }
-      .userSearch {
-        background-color: transparent;
-        width: 100%;
-        padding: 10px 5px;
-        border-bottom: 1px solid grey;
-        .userChat {
-          padding-bottom: 20px;
+          width: 30px;
+          height: 30px;
         }
       }
 
       .chatList {
         max-width: 100%;
+        height: 530px;
         margin-top: 20px;
         background-color: #fdfaf4;
+        overflow-y: auto;
+        border-top: 2px solid gray;
         .userChat {
           max-width: 100%;
           overflow: hidden;
+          position: relative;
           &:hover {
             background-color: #ffe179;
             cursor: pointer;
           }
-          height: 80px;
+          height: 100px;
           border-bottom: 1px solid gray;
+          .userChatInfo {
+            display: flex;
+            flex-direction: column;
+            padding-top: 10px;
+            gap: 5px;
+            span {
+              text-align: left;
+              padding-left: 10px;
+            }
+          }
           .userChatUserAvatar {
             width: 40px;
             height: 40px;
@@ -285,9 +324,29 @@ img {
               margin-left: 5px;
             }
           }
+
+          .userChatLastMessage {
+            position: absolute;
+            bottom: 45px;
+            left: 60px;
+          }
+          .userChatUnreadMessages {
+            font-family: "Montserrat";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 40px;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: #ffe179;
+            border-radius: 50%;
+          }
         }
       }
     }
+
     .chat {
       flex: 2;
       width: 880px;
@@ -310,8 +369,8 @@ img {
         }
         .deleteChat {
           margin-right: 15px;
-          width: 20px;
-          height: 20px;
+          width: 30px;
+          height: 30px;
           background: none;
           cursor: pointer;
         }
@@ -448,7 +507,7 @@ img {
             margin-right: 15px;
             cursor: pointer;
             img {
-              max-width: 25px;
+              max-width: 30px;
             }
           }
           button {
@@ -463,17 +522,45 @@ img {
           }
         }
       }
-      .EditMessagePopup {
-        position: fixed;
-        right: 550px;
-        top: 40vh;
-        width: 250px;
-        height: 100px;
-        background-color: rgba($color: #000000, $alpha: 0.3);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    }
+  }
+}
+
+.EditMessagePopup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .EditMessagePopupContent {
+    width: 450px;
+    height: 200px;
+    background-color: #fdfaf4;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    input {
+      width: 80%;
+      background-color: inherit;
+      border-bottom: 1px solid grey;
+    }
+    .EditMessagePopupButtons {
+      display: flex;
+      gap: 15px;
+      button {
+        background-color: #e2a974;
+        padding: 5px 10px;
+        border-radius: 3px;
       }
     }
   }

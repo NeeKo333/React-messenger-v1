@@ -5,11 +5,15 @@ const EditMessagePopup = ({ submitHandler, closePopup, currentText }) => {
   return (
     <div
       onClick={(e) => {
-        if (e.target.tagName !== "INPUT") closePopup();
+        if (e.target.tagName !== "INPUT" && e.target.tagName !== "BUTTON")
+          closePopup();
       }}
       className="EditMessagePopup"
     >
-      <form onSubmit={(e) => submitHandler(e)}>
+      <form
+        className="EditMessagePopupContent"
+        onSubmit={(e) => submitHandler(e)}
+      >
         <input
           className="editMessageInput"
           type="text"
@@ -17,6 +21,10 @@ const EditMessagePopup = ({ submitHandler, closePopup, currentText }) => {
           value={previousText}
           onChange={(e) => setPreviousTex(e.target.value)}
         ></input>
+        <div className="EditMessagePopupButtons">
+          <button type="submit">Submit</button>
+          <button onClick={closePopup}>Close</button>
+        </div>
       </form>
     </div>
   );

@@ -80,7 +80,7 @@ const UserSearch = () => {
   }
 
   return (
-    <div>
+    <div className="userSearchConteiner">
       <input
         onChange={(e) => setSearchUserName(e.target.value)}
         onKeyDown={(e) => searchOnFirestore(e)}
@@ -89,10 +89,10 @@ const UserSearch = () => {
         placeholder="Search user"
       ></input>
       {Object.keys(searchedUser).length > 0 ? (
-        <div className="userChat" onClick={() => addChatWithTwoUsers()}>
+        <div className="userSearchedChat" onClick={() => addChatWithTwoUsers()}>
           <div className="userChatInfo">
             <span className="userChatUserName">{searchedUser.name}</span>
-            <div className="userChatUserAvatar">
+            <div className="userSearchedChatUserAvatar">
               <img src={searchedUser.photoURL} alt=""></img>
             </div>
           </div>
