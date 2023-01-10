@@ -25,6 +25,7 @@ const InputMessage = () => {
     inputFile ? sendImgAndText() : sendText();
 
     function sendImgAndText() {
+      setInputText("");
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, inputFile);
       uploadTask.on(

@@ -6,6 +6,7 @@ import "./App.scss";
 import { publicRoutes, privateRoutes } from "./routes";
 
 function App() {
+  console.log("app");
   const { authUser } = useContext(AuthContext);
   return (
     <div className="App">

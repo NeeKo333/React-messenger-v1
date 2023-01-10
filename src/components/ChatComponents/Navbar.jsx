@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { auth, storage, AuthContext, firestore } from "../..";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -7,6 +7,7 @@ import { doc, updateDoc } from "firebase/firestore";
 
 const Navbar = () => {
   const { userName, authUser, userPhoto } = useContext(AuthContext);
+  const [avatarIsSelected, setAvatarIsSelected] = useState(false);
   const navigator = useNavigate();
 
   function signOutHandler(a) {
@@ -36,6 +37,7 @@ const Navbar = () => {
       }
     );
     e.target.reset();
+    setAvatarIsSelected(false);
   }
 
   return (
@@ -47,11 +49,22 @@ const Navbar = () => {
         </div>
         <div className="userUploadAvatarConteiner">
           <form onSubmit={(e) => uploadAvatar(e)}>
-            <input type="file" id="uploadAvatar" className="hide"></input>
+            <input
+              type="file"
+              id="uploadAvatar"
+              className="hide"
+              onChange={() => setAvatarIsSelected(true)}
+            ></input>
             <label htmlFor="uploadAvatar">
               <img className="uploadImg" src="/img/upload.png" alt=""></img>
             </label>
-            <button>Upload Avatar</button>
+            <button
+              className={
+                avatarIsSelected ? "uploadAvatarBtn active" : "uploadAvatarBtn"
+              }
+            >
+              Upload Avatar
+            </button>
           </form>
         </div>
       </div>

@@ -25,9 +25,20 @@
       href="https://fonts.googleapis.com/css2?family=Lusitana&family=Montserrat:ital,wght@0,400;1,600&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://unpkg.com/twemoji@14.0.2/dist/twemoji.min.js"
+      crossorigin="anonymous"
+    ></script>
     <title>React App</title>
   </head>
   <body>
     <div id="root"></div>
+    <script defer>
+      setInterval(() => {
+        twemoji.parse(document.querySelector("body"), {
+          base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/",
+        });
+      }, 500);
+    </script>
   </body>
 </html>

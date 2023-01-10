@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { onSnapshot, doc, getDoc, updateDoc } from "firebase/firestore";
+import { onSnapshot, doc, updateDoc } from "firebase/firestore";
 import Message from "./Message";
 import { ChatContext } from "../../chatContext";
 import { firestore, AuthContext } from "../..";
@@ -29,23 +29,20 @@ const Messages = () => {
 
   function getCurrentMessage(e) {
     if (
-      e.target.className === "messageText" &&
+      e.target.className === "editMessage active" &&
       e.target.closest(".message").dataset.owner === authUser.uid
     ) {
       setPopup(true);
       setCurrentMessage({
         id: e.target.closest(".message").id,
-        text: e.target.innerText,
+        text: e.target.closest(".editMessageDiv").nextElementSibling.innerText,
       });
     }
   }
 
-  async function editMessage(newText) {
+  function editMessage(newText) {
     const chatId = data.chatId;
-    const message = await getDoc(
-      doc(firestore, "privateChatsWithTwoUsers", chatId)
-    );
-    const updatedArray = [...message.data().messages];
+    const updatedArray = [...messages];
     const index = updatedArray.findIndex((el) => el.id === currentMessage.id);
     updatedArray[index].text = newText;
 
@@ -58,7 +55,7 @@ const Messages = () => {
       });
     }
 
-    await updateDoc(doc(firestore, "privateChatsWithTwoUsers", chatId), {
+    updateDoc(doc(firestore, "privateChatsWithTwoUsers", chatId), {
       messages: updatedArray,
     });
   }
@@ -69,11 +66,33 @@ const Messages = () => {
     editMessage(e.target[0].value);
   }
 
+  function deleteMessage(el) {
+    const id = el.closest(".message").id;
+    const chatId = data.chatId;
+    const updatedArray = [...messages].filter((el) => el.id !== id);
+
+    updateDoc(doc(firestore, "userChats", authUser.uid), {
+      [data.chatId + ".userInfo.lastMessage"]:
+        updatedArray[updatedArray.length - 1].text,
+    });
+    updateDoc(doc(firestore, "userChats", data.user.uid), {
+      [data.chatId + ".userInfo.lastMessage"]:
+        updatedArray[updatedArray.length - 1].text,
+    });
+
+    updateDoc(doc(firestore, "privateChatsWithTwoUsers", chatId), {
+      messages: updatedArray,
+    });
+  }
+
   return (
     <div
       className="messages"
       onClick={(e) => {
         getCurrentMessage(e);
+        if (e.target.className === "deleteMessage active") {
+          deleteMessage(e.target);
+        }
       }}
     >
       {popup && (

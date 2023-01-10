@@ -262,13 +262,19 @@ img {
                   max-height: 25px;
                 }
               }
-              button {
+              .uploadAvatarBtn {
                 padding: 3px 5px;
-                background-color: #ffe4c4;
+                background-color: rgba($color: #000000, $alpha: 0.3);
                 border-radius: 3px;
                 margin: 0 auto;
-                &:hover {
-                  background-color: rgba($color: #ecb26a, $alpha: 0.7);
+                pointer-events: none;
+
+                &.active {
+                  pointer-events: all;
+                  background-color: #ffe4c4;
+                  &:hover {
+                    background-color: rgba($color: #ecb26a, $alpha: 0.7);
+                  }
                 }
               }
             }
@@ -432,12 +438,37 @@ img {
                 max-width: 100%;
                 background-color: #b6b6b3;
                 border-radius: 12px;
-                padding: 10px 15px 15px 15px;
+                padding: 15px 15px 15px 15px;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 5px;
                 flex: 1 1 auto;
+                position: relative;
+                .editMessage {
+                  display: none;
+                  position: absolute;
+                  top: 1px;
+                  right: 8px;
+                  img {
+                    width: 12px;
+                    height: 12px;
+                  }
+                  &.active {
+                    display: block;
+                  }
+                }
+                .deleteMessage {
+                  display: none;
+                  position: absolute;
+                  top: 1px;
+                  right: 2px;
+                  width: 11px;
+                  height: 11px;
+                  &.active {
+                    display: block;
+                  }
+                }
                 .messageText {
                   max-width: 100%;
                   font-family: "Montserrat";
@@ -527,6 +558,7 @@ img {
 }
 
 .EditMessagePopup {
+  z-index: 99;
   position: fixed;
   left: 0;
   top: 0;
