@@ -76,9 +76,9 @@ const ChatList = () => {
             .data()
             .messages.filter(
               (el) =>
-                el.date?.nanoseconds >
+                el.date?.seconds >
                   response2.data()[combinedId].userInfo.lastCheckTime
-                    ?.nanoseconds &&
+                    ?.seconds &&
                 el.ownerID !== authUser.uid &&
                 el.ownerID !== data.user.uid
             )
