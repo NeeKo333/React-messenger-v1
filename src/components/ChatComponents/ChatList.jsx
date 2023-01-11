@@ -5,6 +5,7 @@ import {
   onSnapshot,
   Timestamp,
   updateDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 import { firestore, AuthContext } from "../..";
 import { ChatContext } from "../../chatContext";
@@ -51,7 +52,7 @@ const ChatList = () => {
         : user.uid + authUser.uid;
 
     await updateDoc(doc(firestore, "userChats", authUser.uid), {
-      [combinedId + ".userInfo.lastCheckTime"]: Timestamp.now(),
+      [combinedId + ".userInfo.lastCheckTime"]: serverTimestamp(),
     });
   }
 
@@ -75,9 +76,9 @@ const ChatList = () => {
             .data()
             .messages.filter(
               (el) =>
-                el.date?.seconds >
+                el.date?.nanoseconds >
                   response2.data()[combinedId].userInfo.lastCheckTime
-                    ?.seconds &&
+                    ?.nanoseconds &&
                 el.ownerID !== authUser.uid &&
                 el.ownerID !== data.user.uid
             )
