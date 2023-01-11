@@ -6,7 +6,6 @@ import { firestore, AuthContext } from "../..";
 import {
   doc,
   updateDoc,
-  serverTimestamp,
   deleteDoc,
   getDoc,
   deleteField,

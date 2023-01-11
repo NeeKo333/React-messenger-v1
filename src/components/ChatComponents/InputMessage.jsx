@@ -7,6 +7,7 @@ import {
   Timestamp,
   updateDoc,
   serverTimestamp,
+  getDoc,
 } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -17,7 +18,7 @@ const InputMessage = () => {
   const [inputFile, setInputFile] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
   const { authUser, userName, userPhoto } = useContext(AuthContext);
-  const { data } = useContext(ChatContext);
+  const { data, dispatch } = useContext(ChatContext);
 
   async function sendMessage(e, inputMessage) {
     const message = inputMessage;
@@ -113,11 +114,19 @@ const InputMessage = () => {
   return (
     <div className="inputMessageWrapper">
       <form
-        onSubmit={(e) => sendMessage(e, inputText)}
+        onSubmit={(e) => {
+          sendMessage(e, inputText);
+          e.target.reset();
+        }}
         className="inputMessageContainer"
       >
         <input
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={async (e) => {
+            setInputText(e.target.value);
+            const res = await getDoc(doc(firestore, "userChats", authUser.uid));
+            if (res.data()[data.chatId]) {
+            } else await dispatch({ type: "reset", payload: authUser });
+          }}
           value={inputText}
           className="inputMessage"
           placeholder="Enter message"

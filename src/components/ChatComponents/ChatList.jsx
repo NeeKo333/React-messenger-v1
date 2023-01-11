@@ -5,7 +5,6 @@ import {
   onSnapshot,
   Timestamp,
   updateDoc,
-  serverTimestamp,
 } from "firebase/firestore";
 import { firestore, AuthContext } from "../..";
 import { ChatContext } from "../../chatContext";
