@@ -210,8 +210,8 @@ img {
       }
       .userSearch {
         background-color: transparent;
-        width: 100%;
-        padding: 10px 5px;
+        width: 85%;
+        padding: 10px 5px 1px 5px;
         border-bottom: 1px solid grey;
       }
     }
@@ -220,6 +220,7 @@ img {
       flex: 1 0 auto;
       background-color: #fdfaf4;
       max-width: 348px;
+      position: relative;
       .userInfo {
         display: flex;
         align-items: center;
@@ -332,9 +333,31 @@ img {
           }
 
           .userChatLastMessage {
+            text-align: left;
+            width: 72%;
+            height: 30px;
+            overflow: hidden;
             position: absolute;
-            bottom: 45px;
+            bottom: 35px;
             left: 60px;
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 15px;
+            color: black;
+          }
+
+          .userChatLastMessageTime {
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 15px;
+            color: grey;
           }
           .userChatUnreadMessages {
             font-family: "Montserrat";
@@ -350,6 +373,21 @@ img {
             border-radius: 50%;
           }
         }
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 15px;
+        left: 38%;
+        border-top: 2px solid gray;
+        font-family: "Lusitana";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        letter-spacing: 0.215em;
+        color: #000000;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
       }
     }
 
@@ -434,6 +472,25 @@ img {
               flex-direction: column;
               max-width: 80%;
               overflow: hidden;
+              .messageOwnerNameRight {
+                text-align: right;
+                font-family: "Montserrat";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                color: #7d4008;
+                padding: 0px 5px 3px 0px;
+              }
+              .messageOwnerNameLeft {
+                text-align: left;
+                font-family: "Montserrat";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                color: #7d4008;
+                padding: 0px 0px 3px 5px;
+              }
+
               .messageContent {
                 max-width: 100%;
                 background-color: #b6b6b3;

@@ -8,6 +8,13 @@ import {
 } from "firebase/firestore";
 import { firestore, AuthContext } from "../..";
 import { ChatContext } from "../../chatContext";
+import moment from "moment";
+
+function getTime(seconds) {
+  return moment(seconds * 1000)
+    .startOf("minutes")
+    .fromNow();
+}
 
 const ChatList = () => {
   const { authUser } = useContext(AuthContext);
@@ -68,8 +75,9 @@ const ChatList = () => {
             .data()
             .messages.filter(
               (el) =>
-                el.date.seconds >
-                  response2.data()[combinedId].userInfo.lastCheckTime.seconds &&
+                el.date?.seconds >
+                  response2.data()[combinedId].userInfo.lastCheckTime
+                    ?.seconds &&
                 el.ownerID !== authUser.uid &&
                 el.ownerID !== data.user.uid
             )
@@ -111,6 +119,11 @@ const ChatList = () => {
               <p className="userChatLastMessage">
                 {chat[1].userInfo.lastMessage
                   ? chat[1].userInfo.lastMessage
+                  : ""}
+              </p>
+              <p className="userChatLastMessageTime">
+                {chat[1].userInfo.lastMessageTime?.seconds
+                  ? getTime(chat[1].userInfo.lastMessageTime?.seconds)
                   : ""}
               </p>
               {unreadMessages[index] && unreadMessages[index].length > 0 ? (

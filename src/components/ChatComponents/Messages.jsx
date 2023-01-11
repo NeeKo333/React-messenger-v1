@@ -74,10 +74,14 @@ const Messages = () => {
     updateDoc(doc(firestore, "userChats", authUser.uid), {
       [data.chatId + ".userInfo.lastMessage"]:
         updatedArray[updatedArray.length - 1].text,
+      [data.chatId + ".userInfo.lastMessageTime"]:
+        updatedArray[updatedArray.length - 1].date,
     });
     updateDoc(doc(firestore, "userChats", data.user.uid), {
       [data.chatId + ".userInfo.lastMessage"]:
         updatedArray[updatedArray.length - 1].text,
+      [data.chatId + ".userInfo.lastMessageTime"]:
+        updatedArray[updatedArray.length - 1].date,
     });
 
     updateDoc(doc(firestore, "privateChatsWithTwoUsers", chatId), {

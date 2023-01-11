@@ -57,11 +57,13 @@ const InputMessage = () => {
               await updateDoc(doc(firestore, "userChats", authUser.uid), {
                 [data.chatId + ".userInfo.lastMessage"]: inputText,
                 [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
+                [data.chatId + ".userInfo.lastMessageTime"]: serverTimestamp(),
               });
 
               await updateDoc(doc(firestore, "userChats", data.user.uid), {
                 [data.chatId + ".userInfo.lastMessage"]: inputText,
                 [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
+                [data.chatId + ".userInfo.lastMessageTime"]: serverTimestamp(),
               });
 
               setInputText("");
@@ -92,11 +94,13 @@ const InputMessage = () => {
         await updateDoc(doc(firestore, "userChats", authUser.uid), {
           [data.chatId + ".userInfo.lastMessage"]: inputText,
           [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
+          [data.chatId + ".userInfo.lastMessageTime"]: serverTimestamp(),
         });
 
         await updateDoc(doc(firestore, "userChats", data.user.uid), {
           [data.chatId + ".userInfo.lastMessage"]: inputText,
           [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
+          [data.chatId + ".userInfo.lastMessageTime"]: serverTimestamp(),
         });
       }
     }
