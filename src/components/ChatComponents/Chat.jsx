@@ -10,6 +10,7 @@ import {
   deleteDoc,
   getDoc,
   deleteField,
+  Timestamp,
 } from "firebase/firestore";
 
 const Chat = () => {
@@ -20,7 +21,7 @@ const Chat = () => {
     const res = await getDoc(doc(firestore, "userChats", authUser.uid));
     if (res.data()[data.chatId]) {
       updateDoc(doc(firestore, "userChats", authUser.uid), {
-        [data.chatId + ".userInfo.lastCheckTime"]: serverTimestamp(),
+        [data.chatId + ".userInfo.lastCheckTime"]: Timestamp.now(),
       });
     } else await dispatch({ type: "reset", payload: authUser });
   }

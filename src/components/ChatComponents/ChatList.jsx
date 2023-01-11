@@ -52,7 +52,7 @@ const ChatList = () => {
         : user.uid + authUser.uid;
 
     await updateDoc(doc(firestore, "userChats", authUser.uid), {
-      [combinedId + ".userInfo.lastCheckTime"]: serverTimestamp(),
+      [combinedId + ".userInfo.lastCheckTime"]: Timestamp.now(),
     });
   }
 

@@ -40,7 +40,7 @@ const InputMessage = () => {
               ownerName: userName,
               photoURL: userPhoto,
               ownerID: authUser.uid,
-              date: serverTimestamp(),
+              date: Timestamp.now(),
               messagePhoto: downloadURL,
             };
 

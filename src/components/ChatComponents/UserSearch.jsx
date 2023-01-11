@@ -9,6 +9,7 @@ import {
   updateDoc,
   doc,
   serverTimestamp,
+  Timestamp,
 } from "firebase/firestore";
 import { AuthContext, firestore } from "../..";
 
@@ -56,7 +57,7 @@ const UserSearch = () => {
           name: searchedUser.name,
           photoURL: searchedUser.photoURL,
           lastChatUpdate: serverTimestamp(),
-          lastCheckTime: serverTimestamp(),
+          lastCheckTime: Timestamp.now(),
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
@@ -69,7 +70,7 @@ const UserSearch = () => {
           name: user.data().name,
           photoURL: user.data().photoURL,
           lastChatUpdate: serverTimestamp(),
-          lastCheckTime: serverTimestamp(),
+          lastCheckTime: Timestamp.now(),
         },
         [combinedId + ".date"]: serverTimestamp(),
       });
