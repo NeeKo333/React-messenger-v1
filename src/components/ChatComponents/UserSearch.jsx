@@ -12,6 +12,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { AuthContext, firestore } from "../..";
+import { motion, AnimatePresence } from "framer-motion";
 
 const UserSearch = () => {
   const [searchUserName, setSearchUserName] = useState("");
@@ -90,14 +91,23 @@ const UserSearch = () => {
         placeholder="Search user"
       ></input>
       {Object.keys(searchedUser).length > 0 ? (
-        <div className="userSearchedChat" onClick={() => addChatWithTwoUsers()}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.15 }}
+          className="userSearchedChat"
+          onClick={() => addChatWithTwoUsers()}
+        >
           <div className="userChatInfo">
-            <span className="userChatUserName">{searchedUser.name}</span>
+            <div className="userChatUserName">{searchedUser.name}</div>
             <div className="userSearchedChatUserAvatar">
               <img src={searchedUser.photoURL} alt=""></img>
             </div>
           </div>
-        </div>
+          <div className="userSearchedChatTitle">
+            Click to add user in your chat list!
+          </div>
+        </motion.div>
       ) : (
         ""
       )}

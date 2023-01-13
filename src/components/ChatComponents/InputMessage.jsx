@@ -12,6 +12,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import EmojiPicker from "emoji-picker-react";
+import { motion } from "framer-motion";
 
 const InputMessage = () => {
   const [inputText, setInputText] = useState("");
@@ -25,6 +26,7 @@ const InputMessage = () => {
     e.preventDefault();
     inputFile ? sendImgAndText() : sendText();
 
+    if (showEmoji) setShowEmoji(false);
     function sendImgAndText() {
       setInputText("");
       const storageRef = ref(storage, uuid());
@@ -136,13 +138,23 @@ const InputMessage = () => {
           onChange={(e) => setInputFile(e.target.files[0])}
           type="file"
           id="uploadImg"
+          accept=".jpg, .jpeg, .png"
         ></input>
-        <label htmlFor="uploadImg">
+        <motion.label
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          htmlFor="uploadImg"
+        >
           <img src="/img/upload.png" alt="" className="uploadImg"></img>
-        </label>
-        <a className="emojiBtn" onClick={() => setShowEmoji(!showEmoji)}>
+        </motion.label>
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="emojiBtn"
+          onClick={() => setShowEmoji(!showEmoji)}
+        >
           <img src="/img/emoji.png"></img>
-        </a>
+        </motion.a>
         {showEmoji && (
           <EmojiPicker
             onEmojiClick={emojiPeek}

@@ -4,6 +4,7 @@ import { auth, storage, AuthContext, firestore } from "../..";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { userName, authUser, userPhoto } = useContext(AuthContext);
@@ -52,12 +53,17 @@ const Navbar = () => {
             <input
               type="file"
               id="uploadAvatar"
+              accept=".jpg, .jpeg, .png"
               className="hide"
               onChange={() => setAvatarIsSelected(true)}
             ></input>
-            <label htmlFor="uploadAvatar">
+            <motion.label
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              htmlFor="uploadAvatar"
+            >
               <img className="uploadImg" src="/img/upload.png" alt=""></img>
-            </label>
+            </motion.label>
             <button
               className={
                 avatarIsSelected ? "uploadAvatarBtn active" : "uploadAvatarBtn"
@@ -68,9 +74,13 @@ const Navbar = () => {
           </form>
         </div>
       </div>
-      <a onClick={() => signOutHandler(auth)}>
+      <motion.a
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => signOutHandler(auth)}
+      >
         <img src="/img/logout.svg"></img>
-      </a>
+      </motion.a>
     </div>
   );
 };

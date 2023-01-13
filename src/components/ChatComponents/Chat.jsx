@@ -11,6 +11,7 @@ import {
   deleteField,
   Timestamp,
 } from "firebase/firestore";
+import { motion } from "framer-motion";
 
 const Chat = () => {
   const { data, dispatch } = useContext(ChatContext);
@@ -31,13 +32,13 @@ const Chat = () => {
       await getDoc(doc(firestore, "userChats", authUser.uid))
     ).data()[data.chatId].userInfo.uid;
 
-    await updateDoc(doc(firestore, "userChats", authUser.uid), {
+    updateDoc(doc(firestore, "userChats", authUser.uid), {
       [data.chatId]: deleteField(),
     });
-    await updateDoc(doc(firestore, "userChats", secondUserUid), {
+    updateDoc(doc(firestore, "userChats", secondUserUid), {
       [data.chatId]: deleteField(),
     });
-    await deleteDoc(doc(firestore, "privateChatsWithTwoUsers", data.chatId));
+    deleteDoc(doc(firestore, "privateChatsWithTwoUsers", data.chatId));
   }
 
   if (data.chatId === "null") {
@@ -48,9 +49,13 @@ const Chat = () => {
     <div onClick={updateCheckTime} className="chat">
       <div className="chatHeader">
         <span className="chatHeaderUserName">{data.user?.name}</span>
-        <a className="deleteChat" onClick={deleteChat}>
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          className="deleteChat"
+          onClick={deleteChat}
+        >
           <img src="/img/deleteChat.svg"></img>
-        </a>
+        </motion.a>
       </div>
       <Messages></Messages>
       <InputMessage></InputMessage>

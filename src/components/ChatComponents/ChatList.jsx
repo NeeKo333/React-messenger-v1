@@ -9,6 +9,7 @@ import {
 import { firestore, AuthContext } from "../..";
 import { ChatContext } from "../../chatContext";
 import moment from "moment";
+import { motion, AnimatePresence } from "framer-motion";
 
 function getTime(seconds) {
   return moment(seconds * 1000)
@@ -100,45 +101,53 @@ const ChatList = () => {
 
   return (
     <div className="chatList">
-      {chatList.length > 0 ? (
-        chatList.map((chat, index) => {
-          return (
-            <div
-              key={chat[0]}
-              className="userChat"
-              onClick={() => peekChat(chat[1].userInfo)}
-            >
-              <div className="userChatInfo">
-                <span className="userChatUserName">
-                  {chat[1].userInfo.name}
-                </span>
-                <div className="userChatUserAvatar">
-                  <img src={avatars[index]} alt=""></img>
+      <AnimatePresence>
+        {chatList.length > 0 ? (
+          chatList.map((chat, index) => {
+            return (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.15 }}
+                exit={{ opacity: 0, pointerEvents: "none" }}
+                key={chat[0]}
+                className="userChat"
+                onClick={() => peekChat(chat[1].userInfo)}
+              >
+                <div className="userChatInfo">
+                  <span className="userChatUserName">
+                    {chat[1].userInfo.name}
+                  </span>
+                  <div className="userChatUserAvatar">
+                    <img src={avatars[index]} alt=""></img>
+                  </div>
                 </div>
-              </div>
-              <p className="userChatLastMessage">
-                {chat[1].userInfo.lastMessage
-                  ? chat[1].userInfo.lastMessage
-                  : ""}
-              </p>
-              <p className="userChatLastMessageTime">
-                {chat[1].userInfo.lastMessageTime?.seconds
-                  ? getTime(chat[1].userInfo.lastMessageTime?.seconds)
-                  : ""}
-              </p>
-              {unreadMessages[index] && unreadMessages[index].length > 0 ? (
-                <span className="userChatUnreadMessages">
-                  {unreadMessages[index].length}
-                </span>
-              ) : (
-                ""
-              )}
-            </div>
-          );
-        })
-      ) : (
-        <h3>No chats</h3>
-      )}
+                <p className="userChatLastMessage">
+                  {chat[1].userInfo.lastMessage
+                    ? chat[1].userInfo.lastMessage
+                    : ""}
+                </p>
+                <p className="userChatLastMessageTime">
+                  {chat[1].userInfo.lastMessageTime?.seconds
+                    ? getTime(chat[1].userInfo.lastMessageTime?.seconds)
+                    : "Click and start chat..."}
+                </p>
+                {unreadMessages[index] && unreadMessages[index].length > 0 ? (
+                  <span className="userChatUnreadMessages">
+                    {unreadMessages[index].length}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </motion.div>
+            );
+          })
+        ) : (
+          <h3 className="searchFriendsTitle">
+            Search freinds and start your first chat 😀
+          </h3>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
