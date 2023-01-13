@@ -3,6 +3,7 @@ import InputMessage from "./InputMessage";
 import Messages from "./Messages";
 import { ChatContext } from "../../chatContext";
 import { firestore, AuthContext } from "../..";
+import DeleteChatPopup from "./DeleteChatPopup";
 import {
   doc,
   updateDoc,
@@ -16,6 +17,7 @@ import { motion } from "framer-motion";
 const Chat = () => {
   const { data, dispatch } = useContext(ChatContext);
   const { authUser } = useContext(AuthContext);
+  const [popup, setPopup] = useState(false);
 
   async function updateCheckTime() {
     const res = await getDoc(doc(firestore, "userChats", authUser.uid));
@@ -27,6 +29,7 @@ const Chat = () => {
   }
 
   async function deleteChat() {
+    setPopup(false);
     await dispatch({ type: "reset", payload: authUser });
     const secondUserUid = await (
       await getDoc(doc(firestore, "userChats", authUser.uid))
@@ -52,10 +55,16 @@ const Chat = () => {
         <motion.a
           whileHover={{ scale: 1.1 }}
           className="deleteChat"
-          onClick={deleteChat}
+          onClick={() => setPopup(true)}
         >
           <img src="/img/deleteChat.svg"></img>
         </motion.a>
+        {popup && (
+          <DeleteChatPopup
+            submitHandler={deleteChat}
+            closePopup={() => setPopup(false)}
+          ></DeleteChatPopup>
+        )}
       </div>
       <Messages></Messages>
       <InputMessage></InputMessage>

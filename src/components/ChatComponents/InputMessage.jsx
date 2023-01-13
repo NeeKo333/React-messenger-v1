@@ -13,6 +13,7 @@ import { v4 as uuid } from "uuid";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import EmojiPicker from "emoji-picker-react";
 import { motion } from "framer-motion";
+import Preview from "./Preview";
 
 const InputMessage = () => {
   const [inputText, setInputText] = useState("");
@@ -20,6 +21,8 @@ const InputMessage = () => {
   const [showEmoji, setShowEmoji] = useState(false);
   const { authUser, userName, userPhoto } = useContext(AuthContext);
   const { data, dispatch } = useContext(ChatContext);
+  const [picture, setPicture] = useState(null);
+  const [pictureVisible, setPictureVisible] = useState(false);
 
   async function sendMessage(e, inputMessage) {
     const message = inputMessage;
@@ -28,6 +31,7 @@ const InputMessage = () => {
 
     if (showEmoji) setShowEmoji(false);
     function sendImgAndText() {
+      setPictureVisible(false);
       setInputText("");
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, inputFile);
@@ -113,6 +117,12 @@ const InputMessage = () => {
     setInputText(inputText + e.emoji);
   }
 
+  const Freader = new FileReader();
+  Freader.onload = function (e) {
+    setPicture(e.target.result);
+    setPictureVisible(true);
+  };
+
   return (
     <div className="inputMessageWrapper">
       <form
@@ -135,15 +145,29 @@ const InputMessage = () => {
         ></input>
         <input
           className="hide"
-          onChange={(e) => setInputFile(e.target.files[0])}
+          onChange={(e) => {
+            Freader.readAsDataURL(e.target.files[0]);
+            setInputFile(e.target.files[0]);
+          }}
           type="file"
           id="uploadImg"
           accept=".jpg, .jpeg, .png"
         ></input>
+        {pictureVisible && (
+          <Preview
+            previwSrc={picture && picture}
+            deletePreview={() => {
+              setPictureVisible(false);
+              setInputFile("");
+            }}
+          ></Preview>
+        )}
+
         <motion.label
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           htmlFor="uploadImg"
+          className="uploadImgLabel"
         >
           <img src="/img/upload.png" alt="" className="uploadImg"></img>
         </motion.label>
