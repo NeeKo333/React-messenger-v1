@@ -45,7 +45,11 @@ const Chat = () => {
   }
 
   if (data.chatId === "null") {
-    return <div className="chat"></div>;
+    return (
+      <div className="notSelectedChat">
+        <img className="mousePicture" src="/img/mouse.svg"></img>
+      </div>
+    );
   }
 
   return (

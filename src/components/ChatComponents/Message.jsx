@@ -29,7 +29,6 @@ const Message = ({ messegeInfo }) => {
         }
       >
         <div className="messageUserBody">
-          {/* <span className="messageOwnerName">{messegeInfo.ownerName}</span> */}
           <div className="messageUserAvatar">
             <img src={userMessagePhoto} alt="" />
           </div>
@@ -46,9 +45,9 @@ const Message = ({ messegeInfo }) => {
             {messegeInfo.ownerName}
           </div>
           <div
+            className="messageContent"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
-            className="messageContent"
           >
             {messegeInfo.ownerID === authUser.uid && (
               <>
@@ -79,7 +78,7 @@ const Message = ({ messegeInfo }) => {
               </>
             )}
 
-            <div className="messageText">{messegeInfo.text}</div>
+            <span className="messageText">{messegeInfo.text}</span>
             {messegeInfo.messagePhoto ? (
               <img
                 className="messagePhoto"

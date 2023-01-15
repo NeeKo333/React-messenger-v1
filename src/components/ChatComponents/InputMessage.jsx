@@ -1,6 +1,6 @@
 import { AuthContext, storage, firestore } from "../..";
 import { ChatContext } from "../../chatContext";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import {
   arrayUnion,
   doc,
@@ -21,8 +21,9 @@ const InputMessage = () => {
   const [showEmoji, setShowEmoji] = useState(false);
   const { authUser, userName, userPhoto } = useContext(AuthContext);
   const { data, dispatch } = useContext(ChatContext);
-  const [picture, setPicture] = useState(null);
-  const [pictureVisible, setPictureVisible] = useState(false);
+  const [picture, setPicture] = useState(null); //preview
+  const [pictureVisible, setPictureVisible] = useState(false); //previewVisible
+  const fileInputRef = useRef(null);
 
   async function sendMessage(e, inputMessage) {
     const message = inputMessage;
@@ -51,7 +52,7 @@ const InputMessage = () => {
               messagePhoto: downloadURL,
             };
 
-            if (message) {
+            if (message || inputFile) {
               const Ref = doc(
                 firestore,
                 "privateChatsWithTwoUsers",
@@ -62,13 +63,13 @@ const InputMessage = () => {
               });
 
               await updateDoc(doc(firestore, "userChats", authUser.uid), {
-                [data.chatId + ".userInfo.lastMessage"]: inputText,
+                [data.chatId + ".userInfo.lastMessage"]: inputText || "Picture",
                 [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
                 [data.chatId + ".userInfo.lastMessageTime"]: serverTimestamp(),
               });
 
               await updateDoc(doc(firestore, "userChats", data.user.uid), {
-                [data.chatId + ".userInfo.lastMessage"]: inputText,
+                [data.chatId + ".userInfo.lastMessage"]: inputText || "Picture",
                 [data.chatId + ".userInfo.lastChatUpdate"]: serverTimestamp(),
                 [data.chatId + ".userInfo.lastMessageTime"]: serverTimestamp(),
               });
@@ -141,7 +142,7 @@ const InputMessage = () => {
           }}
           value={inputText}
           className="inputMessage"
-          placeholder="Enter message"
+          placeholder="Enter message..."
         ></input>
         <input
           className="hide"
@@ -149,6 +150,7 @@ const InputMessage = () => {
             Freader.readAsDataURL(e.target.files[0]);
             setInputFile(e.target.files[0]);
           }}
+          ref={fileInputRef}
           type="file"
           id="uploadImg"
           accept=".jpg, .jpeg, .png"
@@ -159,6 +161,7 @@ const InputMessage = () => {
             deletePreview={() => {
               setPictureVisible(false);
               setInputFile("");
+              fileInputRef.current.value = "";
             }}
           ></Preview>
         )}
@@ -188,7 +191,13 @@ const InputMessage = () => {
             lazyLoadEmojis={true}
           />
         )}
-        <button className="sendMessage">Send</button>
+        <motion.button
+          className="sendMessage"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <div className="sendMessageTriangle"></div>
+        </motion.button>
       </form>
     </div>
   );

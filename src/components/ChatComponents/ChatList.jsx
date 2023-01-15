@@ -118,20 +118,26 @@ const ChatList = () => {
                   <span className="userChatUserName">
                     {chat[1].userInfo.name}
                   </span>
+
                   <div className="userChatUserAvatar">
                     <img src={avatars[index]} alt=""></img>
                   </div>
                 </div>
+
                 <p className="userChatLastMessage">
                   {chat[1].userInfo.lastMessage
-                    ? chat[1].userInfo.lastMessage
+                    ? chat[1].userInfo.lastMessage.length > 27
+                      ? chat[1].userInfo.lastMessage.slice(0, 28) + "..."
+                      : chat[1].userInfo.lastMessage
                     : ""}
                 </p>
+
                 <p className="userChatLastMessageTime">
                   {chat[1].userInfo.lastMessageTime?.seconds
                     ? getTime(chat[1].userInfo.lastMessageTime?.seconds)
                     : "Click and start chat..."}
                 </p>
+
                 {unreadMessages[index] && unreadMessages[index].length > 0 ? (
                   <span className="userChatUnreadMessages">
                     {unreadMessages[index].length}

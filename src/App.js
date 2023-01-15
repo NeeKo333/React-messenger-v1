@@ -6,8 +6,14 @@ import "./App.scss";
 import { publicRoutes, privateRoutes } from "./routes";
 
 function App() {
-  console.log("app");
   const { authUser } = useContext(AuthContext);
+
+  if (authUser === "")
+    return (
+      <div className="preloaderApp">
+        <img className="preloader" src="/img/preloader.svg"></img>
+      </div>
+    );
   return (
     <div className="App">
       <BrowserRouter>

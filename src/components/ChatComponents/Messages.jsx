@@ -9,8 +9,8 @@ const Messages = () => {
   const [popup, setPopup] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
   const { data } = useContext(ChatContext);
-  const ref = useRef();
   const { authUser } = useContext(AuthContext);
+  const ref = useRef();
 
   useEffect(() => {
     const unsub = onSnapshot(
