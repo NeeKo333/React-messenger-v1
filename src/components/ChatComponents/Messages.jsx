@@ -4,7 +4,6 @@ import Message from "./Message";
 import { ChatContext } from "../../chatContext";
 import { firestore, AuthContext } from "../..";
 import EditMessagePopup from "./EditMessagePopup";
-import Preloader from "./Preloader";
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const [popup, setPopup] = useState(false);
