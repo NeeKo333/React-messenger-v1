@@ -21,8 +21,11 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 - [x] Deleting a message, editing messages
 - [x] Displaying the last message in chat depending on the content of the message
 - [x] Preloaders
-- [ ] Video messages
+- [ ] Sending video files
 - [ ] Video call
+- [ ] Adaptive layout
+
+
 
 
 
