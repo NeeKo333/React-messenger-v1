@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthContext } from ".";
 import "./App.scss";
 import { publicRoutes, privateRoutes } from "./routes";
+import Preloader from "./components/ChatComponents/Preloader";
 
 function App() {
   const { authUser } = useContext(AuthContext);
@@ -11,7 +12,7 @@ function App() {
   if (authUser === "")
     return (
       <div className="preloaderApp">
-        <img className="preloader" src="/img/preloader.svg"></img>
+        <Preloader></Preloader>
       </div>
     );
   return (

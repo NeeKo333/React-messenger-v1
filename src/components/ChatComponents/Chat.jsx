@@ -56,6 +56,7 @@ const Chat = () => {
     <div onClick={updateCheckTime} className="chat">
       <div className="chatHeader">
         <span className="chatHeaderUserName">{data.user?.name}</span>
+
         <motion.a
           whileHover={{ scale: 1.1 }}
           className="deleteChat"
@@ -63,6 +64,7 @@ const Chat = () => {
         >
           <img src="/img/deleteChat.svg"></img>
         </motion.a>
+
         {popup && (
           <DeleteChatPopup
             submitHandler={deleteChat}
@@ -70,7 +72,9 @@ const Chat = () => {
           ></DeleteChatPopup>
         )}
       </div>
+
       <Messages></Messages>
+
       <InputMessage></InputMessage>
     </div>
   );

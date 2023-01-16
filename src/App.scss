@@ -376,7 +376,7 @@ img {
             padding-left: 15px;
             padding-top: 5px;
             width: 69%;
-            height: 30px;
+            height: 25px;
             overflow: hidden;
             position: absolute;
             bottom: 35px;
@@ -451,8 +451,6 @@ img {
       align-items: center;
       border-left: 1px solid grey;
       position: relative;
-      .mousePicture {
-      }
     }
 
     .chat {
@@ -638,6 +636,12 @@ img {
               }
             }
           }
+        }
+        .preloader {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100px;
         }
       }
       .inputMessageWrapper {
