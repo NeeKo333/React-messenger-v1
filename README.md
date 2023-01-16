@@ -11,6 +11,7 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 ## Todo:
 - [x] Registration
 - [x] Login / logout
+- [x] Routing
 - [x] User search by name
 - [x] Adding / deleting a chat with a user
 - [x] Sending pictures, sending text, sending emoji
@@ -20,6 +21,8 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 - [x] Deleting a message, editing messages
 - [x] Displaying the last message in chat depending on the content of the message
 - [x] Preloaders
+- [ ] Video messages
+- [ ] Video call
 
 
 
