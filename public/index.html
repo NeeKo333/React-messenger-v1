@@ -33,12 +33,22 @@
   </head>
   <body>
     <div id="root"></div>
-    <script defer>
-      setInterval(() => {
-        twemoji.parse(document.querySelector("body"), {
+
+    <script>
+      let observer = new MutationObserver((mutationRecords) => {
+        twemoji.parse(document.querySelector(".chatList"), {
           base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/",
         });
-      }, 500);
+        twemoji.parse(document.querySelector(".chat"), {
+          base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/",
+        });
+      });
+
+      observer.observe(root, {
+        childList: true,
+        subtree: true,
+        characterDataOldValue: false,
+      });
     </script>
   </body>
 </html>

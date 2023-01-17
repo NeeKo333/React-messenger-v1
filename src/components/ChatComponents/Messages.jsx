@@ -99,7 +99,6 @@ const Messages = () => {
   }
 
   function scrollHendler(e) {
-    console.log(e.target.scrollTop, e.target.scrollHeight, window.innerHeight);
     if (e.target.scrollTop < 230) {
       setCurrentPage(currentPage + 1);
     }

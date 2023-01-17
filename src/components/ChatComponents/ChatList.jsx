@@ -44,7 +44,7 @@ const ChatList = () => {
     };
   }, [authUser.uid]);
 
-  async function peekChat(user) {
+  async function pickChat(user) {
     dispatch({ type: "change_user", payload: user });
     const combinedId =
       authUser.uid > user.uid
@@ -112,7 +112,7 @@ const ChatList = () => {
                 exit={{ opacity: 0, pointerEvents: "none" }}
                 key={chat[0]}
                 className="userChat"
-                onClick={() => peekChat(chat[1].userInfo)}
+                onClick={() => pickChat(chat[1].userInfo)}
               >
                 <div className="userChatInfo">
                   <span className="userChatUserName">
