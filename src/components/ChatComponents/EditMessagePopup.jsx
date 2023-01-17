@@ -19,7 +19,7 @@ const EditMessagePopup = ({ submitHandler, closePopup, currentText }) => {
           type="text"
           placeholder="Edit message"
           value={previousText}
-          onChange={(e) => setPreviousTex(e.target.value)}
+          onChange={(e) => setPreviousTex(e.target.value.slice(0, 250))}
         ></input>
         <div className="EditMessagePopupButtons">
           <button type="submit">Submit</button>

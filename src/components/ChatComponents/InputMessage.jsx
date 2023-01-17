@@ -137,7 +137,7 @@ const InputMessage = () => {
       >
         <input
           onChange={async (e) => {
-            setInputText(e.target.value);
+            setInputText(e.target.value.slice(0, 250));
             const res = await getDoc(doc(firestore, "userChats", authUser.uid));
             if (res.data()[data.chatId]) {
             } else await dispatch({ type: "reset", payload: authUser });
