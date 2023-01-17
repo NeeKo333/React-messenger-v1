@@ -7,6 +7,8 @@ import EditMessagePopup from "./EditMessagePopup";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
+  const [visibleMessages, setVisibleMessages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [popup, setPopup] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
   const { data } = useContext(ChatContext);
@@ -20,13 +22,19 @@ const Messages = () => {
         doc.exists() && setMessages(doc.data().messages);
       }
     );
-
+    setCurrentPage(1);
     return () => {
       unsub();
     };
   }, [data.chatId]);
 
-  setTimeout(() => ref.current.scrollIntoView(), 300);
+  useEffect(() => {
+    setVisibleMessages(messages.slice(-15 * currentPage));
+  }, [currentPage, messages]);
+
+  useEffect(() => {
+    setTimeout(() => ref.current.scrollIntoView(), 300);
+  }, [messages]);
 
   function getCurrentMessage(e) {
     if (
@@ -90,8 +98,16 @@ const Messages = () => {
     });
   }
 
+  function scrollHendler(e) {
+    console.log(e.target.scrollTop, e.target.scrollHeight, window.innerHeight);
+    if (e.target.scrollTop < 230) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
   return (
     <div
+      onScroll={(e) => scrollHendler(e)}
       className="messages"
       onClick={(e) => {
         getCurrentMessage(e);
@@ -108,7 +124,7 @@ const Messages = () => {
         />
       )}
 
-      {messages.map((message) => (
+      {visibleMessages.map((message) => (
         <Message key={message.id} messegeInfo={message}></Message>
       ))}
 

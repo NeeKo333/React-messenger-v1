@@ -126,8 +126,8 @@ const ChatList = () => {
 
                 <p className="userChatLastMessage">
                   {chat[1].userInfo.lastMessage
-                    ? chat[1].userInfo.lastMessage.length > 24
-                      ? chat[1].userInfo.lastMessage.slice(0, 24) + "..."
+                    ? chat[1].userInfo.lastMessage.length > 15
+                      ? chat[1].userInfo.lastMessage.slice(0, 15) + "..."
                       : chat[1].userInfo.lastMessage
                     : ""}
                 </p>
