@@ -16,7 +16,7 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 ![Registration page](https://i.ibb.co/7QnXrGL/FGu09-Mi-Dn0-Jnx-Su0-LB4-Bl-O4qu-TW4f2-WYZl-x-Sv3b9a27-Tgw-Eqyf5en526b2if-CJ7i9-R6nu-UXAJ3o-RWbw-KWF.jpg)
 ![Login page](https://i.ibb.co/C92vydb/6ve-Rw-VIRb-Ij-Yv-ASWg-l-Zm-OTA85-Vvje-R822x-J9-Ghq-Ch-KJ5-JPMK9xm-Qx-4-S-i-RII7foag-I5-Cf-N-Va-g-C3.jpg)
 ![Search user](https://i.ibb.co/QkZt5pZ/6aeuz-Uzc2-JFfxk-RSA3-SM2gv-Sywy-HQXj7i7u-Eg-Knb-LUp-PAfg-Fm5-Cuf-YWv-Y7sm-EAFql8-CJ861m-JUNj5p80g-A.jpg)
-![Chat](https://i.ibb.co/1KHrdXG/Ra51z-Vkjrm-Wphccqj-JBWj-Jgpori-PGmd-S-f8d7h-RF-Vqz-UN3iy-Pwi-ECy-TGL2t-Adbx-Ph-Ga7-Tkt3-LCXPH5gd-GV.jpg)
+![Chat](https://i.ibb.co/WWCRSPK/r-R944-HFnc-Zi-Jv-ULfd-M38-YVceu-JB43-Mw8-TLZwqh-J7z3x9num-Nq-CXl8-DOqg-LB-rvo-FWP5v-OS57r-Fd-4-Dr-I.jpg)
 
 ## Features:
 - [x] Registration
@@ -25,6 +25,7 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 - [x] User search by name
 - [x] Adding / deleting a chat with a user
 - [x] Sending pictures, sending text, sending emoji
+- [x] Pictures preview
 - [x] Changing avatar
 - [x] Sorting chats
 - [x] Displaying the number of unread messages
@@ -32,6 +33,7 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 - [x] Displaying the last message in chat depending on the content of the message
 - [x] Preloaders
 - [x] Animations
+- [ ] Virtual scroll
 - [ ] Sending video files
 - [ ] Video call
 - [ ] Adaptive layout
