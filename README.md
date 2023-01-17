@@ -36,6 +36,7 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 - [ ] Virtual scroll
 - [ ] Sending video files
 - [ ] Video call
+- [ ] Advanced form validation
 - [ ] Adaptive layout
 
 
