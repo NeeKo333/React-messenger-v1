@@ -7,7 +7,8 @@ import { doc, updateDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
-  const { userName, authUser, userPhoto } = useContext(AuthContext);
+  const { userName, authUser, userPhoto, setUserPhoto } =
+    useContext(AuthContext);
   const [avatarIsSelected, setAvatarIsSelected] = useState(false);
   const navigator = useNavigate();
 
@@ -34,13 +35,13 @@ const Navbar = () => {
           await updateDoc(doc(firestore, "users", authUser.uid), {
             photoURL: downloadURL,
           });
+          setUserPhoto(downloadURL);
         });
       }
     );
     e.target.reset();
     setAvatarIsSelected(false);
   }
-
   return (
     <div className="userInfo">
       <div className="userInfoConteiner">
@@ -61,6 +62,11 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               htmlFor="uploadAvatar"
+              className={
+                avatarIsSelected
+                  ? "uploadAvatarLabel active"
+                  : "uploadAvatarLabel"
+              }
             >
               <img className="uploadImg" src="/img/upload.png" alt=""></img>
             </motion.label>
@@ -79,7 +85,7 @@ const Navbar = () => {
         whileTap={{ scale: 0.9 }}
         onClick={() => signOutHandler(auth)}
       >
-        <img src="/img/logout.svg"></img>
+        <img src="/img/logout.svg" alt=""></img>
       </motion.a>
     </div>
   );

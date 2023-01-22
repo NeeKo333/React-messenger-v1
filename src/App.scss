@@ -289,13 +289,27 @@ img {
           .userUploadAvatarConteiner {
             form {
               display: flex;
-              label {
+              .uploadAvatarLabel {
                 text-align: left;
                 img {
                   max-width: 25px;
                   max-height: 25px;
                 }
+                &.active {
+                  position: relative;
+                  &::after {
+                    content: "";
+                    position: absolute;
+                    width: 5px;
+                    height: 5px;
+                    background-color: #f9787f;
+                    border-radius: 50%;
+                    top: 0px;
+                    right: 3px;
+                  }
+                }
               }
+
               .uploadAvatarBtn {
                 padding: 3px 5px;
                 background-color: rgba($color: #000000, $alpha: 0.3);

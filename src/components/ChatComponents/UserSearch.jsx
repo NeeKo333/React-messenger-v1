@@ -12,7 +12,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { AuthContext, firestore } from "../..";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const UserSearch = () => {
   const [searchUserName, setSearchUserName] = useState("");
@@ -21,11 +21,13 @@ const UserSearch = () => {
 
   async function searchOnFirestore(e) {
     if (e.code === "Enter") {
-      setSearchedUser({});
       const usersRef = collection(firestore, "users");
       const q = query(usersRef, where("name", "==", searchUserName));
       try {
         const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+          setSearchedUser({ empty: true });
+        }
         querySnapshot.forEach((user) => {
           if (user.data().userId !== authUser.uid) {
             setSearchedUser(user.data());
@@ -79,6 +81,29 @@ const UserSearch = () => {
 
     setSearchUserName("");
     setSearchedUser({});
+  }
+
+  if (searchedUser.empty) {
+    return (
+      <div className="userSearchConteiner">
+        <input
+          onChange={(e) => setSearchUserName(e.target.value)}
+          onKeyDown={(e) => searchOnFirestore(e)}
+          value={searchUserName}
+          className="userSearch"
+          placeholder="Search user"
+        ></input>
+        <motion.div
+          onClick={() => setSearchedUser({})}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.15 }}
+          className="userSearchedChat"
+        >
+          <div className="userSearchedChatTitle">User not found!</div>
+        </motion.div>
+      </div>
+    );
   }
 
   return (
