@@ -15,7 +15,7 @@ import EmojiPicker from "emoji-picker-react";
 import { motion } from "framer-motion";
 import Preview from "./Preview";
 
-const InputMessage = () => {
+const InputMessage = ({ replyMessage, getPeply }) => {
   const [inputText, setInputText] = useState("");
   const [inputFile, setInputFile] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
@@ -50,8 +50,9 @@ const InputMessage = () => {
               ownerID: authUser.uid,
               date: Timestamp.now(),
               messagePhoto: downloadURL,
+              replay: replyMessage ? replyMessage : false,
             };
-
+            getPeply("");
             if (message || inputFile) {
               const Ref = doc(
                 firestore,
@@ -93,7 +94,9 @@ const InputMessage = () => {
         photoURL: userPhoto,
         ownerID: authUser.uid,
         date: Timestamp.now(),
+        replay: replyMessage ? replyMessage : false,
       };
+      getPeply("");
 
       if (message) {
         const Ref = doc(firestore, "privateChatsWithTwoUsers", data.chatId);
@@ -128,6 +131,20 @@ const InputMessage = () => {
 
   return (
     <div className="inputMessageWrapper">
+      {replyMessage && (
+        <div className="replayMessageBody">
+          <div className="replayMessageBlockOnInput">
+            <div className="replayMessageContent">
+              <p>{replyMessage.ownerName}</p>
+              <span>{replyMessage.text}</span>
+            </div>
+            <span className="removeReply" onClick={() => getPeply("")}>
+              <img src="/img/closePreview.png"></img>
+            </span>
+          </div>
+        </div>
+      )}
+
       <form
         onSubmit={(e) => {
           sendMessage(e, inputText);
@@ -146,6 +163,7 @@ const InputMessage = () => {
           className="inputMessage"
           placeholder="Enter message..."
         ></input>
+
         <input
           className="hide"
           onChange={(e) => {
@@ -157,6 +175,7 @@ const InputMessage = () => {
           id="uploadImg"
           accept=".jpg, .jpeg, .png"
         ></input>
+
         {pictureVisible && (
           <Preview
             previwSrc={picture && picture}
@@ -176,6 +195,7 @@ const InputMessage = () => {
         >
           <img src="/img/upload.png" alt="" className="uploadImg"></img>
         </motion.label>
+
         <motion.a
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -184,6 +204,7 @@ const InputMessage = () => {
         >
           <img src="/img/emoji.png"></img>
         </motion.a>
+
         {showEmoji && (
           <EmojiPicker
             onEmojiClick={emojiPeek}
@@ -193,6 +214,7 @@ const InputMessage = () => {
             lazyLoadEmojis={true}
           />
         )}
+
         <motion.button
           className="sendMessage"
           whileHover={{ scale: 1.1 }}

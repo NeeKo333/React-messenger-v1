@@ -11,12 +11,6 @@ import { ChatContext } from "../../chatContext";
 import moment from "moment";
 import { motion, AnimatePresence } from "framer-motion";
 
-function getTime(seconds) {
-  return moment(seconds * 1000)
-    .startOf("minutes")
-    .fromNow();
-}
-
 const ChatList = () => {
   const { authUser } = useContext(AuthContext);
   const { dispatch, data } = useContext(ChatContext);
@@ -43,18 +37,6 @@ const ChatList = () => {
       unsub();
     };
   }, [authUser.uid]);
-
-  async function pickChat(user) {
-    dispatch({ type: "change_user", payload: user });
-    const combinedId =
-      authUser.uid > user.uid
-        ? authUser.uid + user.uid
-        : user.uid + authUser.uid;
-
-    await updateDoc(doc(firestore, "userChats", authUser.uid), {
-      [combinedId + ".userInfo.lastCheckTime"]: Timestamp.now(),
-    });
-  }
 
   useEffect(() => {
     async function unreadMessages() {
@@ -98,6 +80,24 @@ const ChatList = () => {
     unreadMessages().then((data) => setUnreadMessages(data));
     getPhotos().then((data) => setAvatars(data));
   }, [chatList]);
+
+  function getTime(seconds) {
+    return moment(seconds * 1000)
+      .startOf("minutes")
+      .fromNow();
+  }
+
+  async function pickChat(user) {
+    dispatch({ type: "change_user", payload: user });
+    const combinedId =
+      authUser.uid > user.uid
+        ? authUser.uid + user.uid
+        : user.uid + authUser.uid;
+
+    await updateDoc(doc(firestore, "userChats", authUser.uid), {
+      [combinedId + ".userInfo.lastCheckTime"]: Timestamp.now(),
+    });
+  }
 
   return (
     <div className="chatList">

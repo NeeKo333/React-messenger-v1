@@ -5,7 +5,7 @@ import { ChatContext } from "../../chatContext";
 import { firestore, AuthContext } from "../..";
 import EditMessagePopup from "./EditMessagePopup";
 
-const Messages = () => {
+const Messages = ({ getReply }) => {
   const [messages, setMessages] = useState([]);
   const [visibleMessages, setVisibleMessages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,7 +44,8 @@ const Messages = () => {
       setPopup(true);
       setCurrentMessage({
         id: e.target.closest(".message").id,
-        text: e.target.closest(".editMessageDiv").nextElementSibling.innerText,
+        text: messages.find((el) => el.id === e.target.closest(".message").id)
+          .text,
       });
     }
   }
@@ -54,6 +55,7 @@ const Messages = () => {
     const updatedArray = [...messages];
     const index = updatedArray.findIndex((el) => el.id === currentMessage.id);
     updatedArray[index].text = newText;
+    updatedArray[index].edited = true;
 
     if (index === updatedArray.length - 1) {
       updateDoc(doc(firestore, "userChats", authUser.uid), {
@@ -98,6 +100,12 @@ const Messages = () => {
     });
   }
 
+  function replyToMessage(e) {
+    const id = e.target.closest(".message").id;
+    const message = messages.find((el) => el.id === id);
+    getReply(message);
+  }
+
   function scrollHendler(e) {
     if (e.target.scrollTop < 230) {
       setCurrentPage(currentPage + 1);
@@ -112,6 +120,12 @@ const Messages = () => {
         getCurrentMessage(e);
         if (e.target.className === "deleteMessage active") {
           deleteMessage(e.target);
+        }
+        if (
+          e.target.className === "replyMessageButton active" ||
+          e.target.className === "replyMessageButton active owner"
+        ) {
+          replyToMessage(e);
         }
       }}
     >

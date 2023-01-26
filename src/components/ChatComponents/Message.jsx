@@ -5,8 +5,9 @@ import moment from "moment";
 
 const Message = ({ messegeInfo }) => {
   const { authUser } = useContext(AuthContext);
-  const [userMessagePhoto, setUserMessagePhoto] = useState("");
-  const [isHover, setIsHover] = useState(false);
+  const [userMessagePhoto, setUserMessagePhoto] = useState(""); //user photo next to the message
+  const [isHover, setIsHover] = useState(false); // display interaction buttons when hovering over a message
+
   getDoc(doc(firestore, "users", messegeInfo.ownerID)).then((doc) =>
     setUserMessagePhoto(doc.data().photoURL)
   );
@@ -44,12 +45,13 @@ const Message = ({ messegeInfo }) => {
           >
             {messegeInfo.ownerName}
           </div>
+
           <div
             className="messageContent"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
           >
-            {messegeInfo.ownerID === authUser.uid && (
+            {messegeInfo.ownerID === authUser.uid ? (
               <>
                 <div
                   className={isHover ? "deleteMessage active" : "deleteMessage"}
@@ -65,6 +67,15 @@ const Message = ({ messegeInfo }) => {
                 <div
                   className={
                     isHover
+                      ? "replyMessageButton active owner"
+                      : "replyMessageButton"
+                  }
+                >
+                  reply
+                </div>
+                <div
+                  className={
+                    isHover
                       ? "editMessage active editMessageDiv"
                       : "editMessage"
                   }
@@ -76,9 +87,28 @@ const Message = ({ messegeInfo }) => {
                   ></img>
                 </div>
               </>
+            ) : (
+              <div
+                className={
+                  isHover ? "replyMessageButton active" : "replyMessageButton"
+                }
+              >
+                reply
+              </div>
+            )}
+
+            {messegeInfo.replay && (
+              <div className="messageReply">
+                <span>{messegeInfo.replay.ownerName}</span>
+                <span>{messegeInfo.replay.text}</span>
+                {messegeInfo.replay.photoURL && (
+                  <img src={messegeInfo.replay.messagePhoto} alt=""></img>
+                )}
+              </div>
             )}
 
             <span className="messageText">{messegeInfo.text}</span>
+
             {messegeInfo.messagePhoto ? (
               <img
                 className="messagePhoto"
@@ -88,6 +118,9 @@ const Message = ({ messegeInfo }) => {
             ) : (
               ""
             )}
+            <div className="messageEditedMark">
+              {messegeInfo.edited ? "edited" : ""}
+            </div>
           </div>
           <div className="messageTime">{getTime(messegeInfo.date.seconds)}</div>
         </div>

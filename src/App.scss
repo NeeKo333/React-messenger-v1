@@ -605,6 +605,34 @@ img {
                     display: block;
                   }
                 }
+                .replyMessageButton {
+                  display: none;
+                  position: absolute;
+                  top: 1px;
+                  right: 10px;
+                  cursor: pointer;
+                  &.active {
+                    display: block;
+                    &.owner {
+                      right: 30px;
+                    }
+                  }
+                }
+                .messageReply {
+                  display: flex;
+                  flex-direction: column;
+                  padding-left: 3px;
+                  max-width: 100%;
+                  font-family: "Montserrat";
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 16px;
+                  line-height: 20px;
+                  text-align: left;
+                  color: grey;
+                  word-wrap: break-word;
+                  border-left: 1px solid gray;
+                }
                 .messageText {
                   padding-left: 3px;
                   max-width: 100%;
@@ -620,6 +648,14 @@ img {
                 .messagePhoto {
                   max-width: 100%;
                   border-radius: 6px;
+                }
+                .messageEditedMark {
+                  align-self: flex-end;
+                  font-family: "Montserrat";
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 10px;
+                  color: grey;
                 }
               }
               .messageTime {
@@ -661,6 +697,44 @@ img {
       .inputMessageWrapper {
         border-top: 1px solid grey;
         gap: 10px;
+        .replayMessageBody {
+          display: flex;
+          gap: 10px;
+          margin-top: 5px;
+
+          .replayMessageBlockOnInput {
+            width: 60%;
+            padding: 10px 10px;
+            margin-left: 10px;
+            background-color: #c0daf8;
+            border-radius: 6px;
+            position: relative;
+
+            .replayMessageContent {
+              border-left: 1px solid grey;
+              padding-left: 5px;
+              min-width: 30%;
+              max-width: 98%;
+              overflow: hidden;
+              text-align: left;
+              font-family: "Montserrat";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 14px;
+              color: grey;
+            }
+            .removeReply {
+              position: absolute;
+              top: 2px;
+              right: 2px;
+              cursor: pointer;
+              img {
+                width: 20px;
+                height: 20px;
+              }
+            }
+          }
+        }
         .inputMessageContainer {
           display: flex;
           .inputMessage {

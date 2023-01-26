@@ -21,7 +21,7 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 ![Search user](https://i.ibb.co/QkZt5pZ/6aeuz-Uzc2-JFfxk-RSA3-SM2gv-Sywy-HQXj7i7u-Eg-Knb-LUp-PAfg-Fm5-Cuf-YWv-Y7sm-EAFql8-CJ861m-JUNj5p80g-A.jpg)
 ![Chat](https://i.ibb.co/WWCRSPK/r-R944-HFnc-Zi-Jv-ULfd-M38-YVceu-JB43-Mw8-TLZwqh-J7z3x9num-Nq-CXl8-DOqg-LB-rvo-FWP5v-OS57r-Fd-4-Dr-I.jpg)
 
-## Features:
+## Check lsit:
 
 - [x] Registration
 - [x] Login / logout
@@ -38,7 +38,9 @@ You can try this app [here](https://react-messenger-v1.vercel.app).
 - [x] Preloaders
 - [x] Animations
 - [x] Virtual scroll
+- [x] Reply messages feature
 - [ ] Sending video files
 - [ ] Video call
 - [ ] Advanced form validation
 - [ ] Adaptive layout
+- [ ] Refactoring and optimization

@@ -18,10 +18,11 @@ const Chat = () => {
   const { data, dispatch } = useContext(ChatContext);
   const { authUser } = useContext(AuthContext);
   const [popup, setPopup] = useState(false);
+  const [replyMessage, setReplyMessage] = useState("");
 
   async function updateCheckTime() {
-    const res = await getDoc(doc(firestore, "userChats", authUser.uid));
-    if (res.data()[data.chatId]) {
+    const result = await getDoc(doc(firestore, "userChats", authUser.uid));
+    if (result.data()[data.chatId]) {
       updateDoc(doc(firestore, "userChats", authUser.uid), {
         [data.chatId + ".userInfo.lastCheckTime"]: Timestamp.now(),
       });
@@ -44,10 +45,14 @@ const Chat = () => {
     deleteDoc(doc(firestore, "privateChatsWithTwoUsers", data.chatId));
   }
 
+  function getPeply(message) {
+    setReplyMessage(message);
+  }
+
   if (data.chatId === "null") {
     return (
       <div className="notSelectedChat">
-        <img className="mousePicture" src="/img/mouse.svg"></img>
+        <img className="mousePicture" src="/img/mouse.svg" alt=""></img>
       </div>
     );
   }
@@ -62,7 +67,7 @@ const Chat = () => {
           className="deleteChat"
           onClick={() => setPopup(true)}
         >
-          <img src="/img/deleteChat.svg"></img>
+          <img src="/img/deleteChat.svg" alt=""></img>
         </motion.a>
 
         {popup && (
@@ -73,9 +78,12 @@ const Chat = () => {
         )}
       </div>
 
-      <Messages></Messages>
+      <Messages getReply={getPeply}></Messages>
 
-      <InputMessage></InputMessage>
+      <InputMessage
+        getPeply={getPeply}
+        replyMessage={replyMessage}
+      ></InputMessage>
     </div>
   );
 };

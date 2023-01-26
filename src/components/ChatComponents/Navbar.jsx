@@ -27,9 +27,7 @@ const Navbar = () => {
     uploadTask.on(
       "state_changed",
       (snapshot) => {},
-      (error) => {
-        // Handle unsuccessful uploads
-      },
+      (error) => {},
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           await updateDoc(doc(firestore, "users", authUser.uid), {
