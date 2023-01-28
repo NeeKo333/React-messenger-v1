@@ -645,7 +645,8 @@ img {
                   color: #000000;
                   word-wrap: break-word;
                 }
-                .messagePhoto {
+                .messagePhoto,
+                .messageVideo {
                   max-width: 100%;
                   border-radius: 6px;
                 }

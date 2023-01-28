@@ -118,6 +118,18 @@ const Message = ({ messegeInfo }) => {
             ) : (
               ""
             )}
+
+            {messegeInfo.messageVideo ? (
+              <video
+                className="messageVideo"
+                src={messegeInfo.messageVideo}
+                alt=""
+                controls
+              ></video>
+            ) : (
+              ""
+            )}
+
             <div className="messageEditedMark">
               {messegeInfo.edited ? "edited" : ""}
             </div>

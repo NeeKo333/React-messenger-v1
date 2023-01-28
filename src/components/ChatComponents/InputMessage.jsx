@@ -10,37 +10,46 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  getMetadata,
+} from "firebase/storage";
 import EmojiPicker from "emoji-picker-react";
 import { motion } from "framer-motion";
 import Preview from "./Preview";
 
 const InputMessage = ({ replyMessage, getPeply }) => {
-  const [inputText, setInputText] = useState("");
-  const [inputFile, setInputFile] = useState("");
-  const [showEmoji, setShowEmoji] = useState(false);
+  const [inputText, setInputText] = useState(""); // Text from message input
+  const [inputFile, setInputFile] = useState(""); // File from message input
+  const [showEmoji, setShowEmoji] = useState(false); // Emoji window display settings
   const { authUser, userName, userPhoto } = useContext(AuthContext);
-  const { data, dispatch } = useContext(ChatContext);
+  const { data, dispatch } = useContext(ChatContext); // Data to check that the chat is not deleted and reducer to reset if chat deleted
   const [picture, setPicture] = useState(null); //preview
   const [pictureVisible, setPictureVisible] = useState(false); //previewVisible
-  const fileInputRef = useRef(null);
+  const fileInputRef = useRef(null); // Ref to input to reset the file when deleting through the preview
 
   async function sendMessage(e, inputMessage) {
     const message = inputMessage;
     e.preventDefault();
-    inputFile ? sendImgAndText() : sendText();
+    inputFile ? sendFileAndText() : sendText();
 
     if (showEmoji) setShowEmoji(false);
-    function sendImgAndText() {
+
+    function sendFileAndText() {
       setPictureVisible(false);
       setInputText("");
+
       const storageRef = ref(storage, uuid());
+
       const uploadTask = uploadBytesResumable(storageRef, inputFile);
       uploadTask.on(
         "state_changed",
         (snapshot) => {},
         (error) => {},
-        () => {
+        async () => {
+          const metadata = await getMetadata(uploadTask.snapshot.ref);
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             const messageInfo = {
               id: uuid(),
@@ -49,10 +58,13 @@ const InputMessage = ({ replyMessage, getPeply }) => {
               photoURL: userPhoto,
               ownerID: authUser.uid,
               date: Timestamp.now(),
-              messagePhoto: downloadURL,
+              messagePhoto: metadata.contentType !== "video/mp4" && downloadURL,
+              messageVideo: metadata.contentType === "video/mp4" && downloadURL,
               replay: replyMessage ? replyMessage : false,
             };
+
             getPeply("");
+
             if (message || inputFile) {
               const Ref = doc(
                 firestore,
@@ -77,7 +89,7 @@ const InputMessage = ({ replyMessage, getPeply }) => {
                 [data.chatId + ".userInfo.lastMessageTime"]: serverTimestamp(),
               });
 
-              setInputText("");
+              // setInputText("");
               setInputFile("");
             }
           });
@@ -119,7 +131,7 @@ const InputMessage = ({ replyMessage, getPeply }) => {
     }
   }
 
-  function emojiPeek(e) {
+  function emojiPick(e) {
     setInputText(inputText + e.emoji);
   }
 
@@ -173,7 +185,7 @@ const InputMessage = ({ replyMessage, getPeply }) => {
           ref={fileInputRef}
           type="file"
           id="uploadImg"
-          accept=".jpg, .jpeg, .png"
+          accept=".jpg, .jpeg, .png, .mp4"
         ></input>
 
         {pictureVisible && (
@@ -207,7 +219,7 @@ const InputMessage = ({ replyMessage, getPeply }) => {
 
         {showEmoji && (
           <EmojiPicker
-            onEmojiClick={emojiPeek}
+            onEmojiClick={emojiPick}
             searchDisabled={true}
             emojiStyle="twitter"
             skinTonesDisabled={true}
