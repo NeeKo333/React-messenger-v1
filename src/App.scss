@@ -356,6 +356,9 @@ img {
             background-color: #ffe179;
             cursor: pointer;
           }
+          &.active {
+            background-color: #ffe179;
+          }
           height: 100px;
           border-bottom: 1px solid gray;
           .userChatInfo {

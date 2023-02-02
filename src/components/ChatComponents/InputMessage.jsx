@@ -179,8 +179,10 @@ const InputMessage = ({ replyMessage, getPeply }) => {
         <input
           className="hide"
           onChange={(e) => {
-            Freader.readAsDataURL(e.target.files[0]);
-            setInputFile(e.target.files[0]);
+            if (e.target.files[0].size <= 100000000) {
+              Freader.readAsDataURL(e.target.files[0]);
+              setInputFile(e.target.files[0]);
+            } else alert("File size can not be larger than 100MB!");
           }}
           ref={fileInputRef}
           type="file"

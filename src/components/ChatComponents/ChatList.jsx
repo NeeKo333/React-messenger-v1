@@ -111,7 +111,9 @@ const ChatList = () => {
                 transition={{ duration: 0.15 }}
                 exit={{ opacity: 0, pointerEvents: "none" }}
                 key={chat[0]}
-                className="userChat"
+                className={
+                  chat[0] === data.chatId ? "userChat active" : "userChat"
+                }
                 onClick={() => pickChat(chat[1].userInfo)}
               >
                 <div className="userChatInfo">
