@@ -1,6 +1,6 @@
-import Home from "../components/Pages/Home";
-import Login from "../components/Pages/Login";
-import Registration from "../components/Pages/Registration";
+import Home from "../components/pages/Home";
+import Login from "../components/pages/Login";
+import Registration from "../components/pages/Registration";
 
 export const publicRoutes = [
   {
