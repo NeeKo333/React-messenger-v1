@@ -1,7 +1,7 @@
-import { AuthContext, firestore } from "../..";
+import { AuthContext, firestore } from "../../core/context/authContext";
 import { useContext, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import moment from "moment";
+import { getTime } from "../../helpers/getTime";
 
 const Message = ({ messegeInfo }) => {
   const { authUser } = useContext(AuthContext);
@@ -11,12 +11,6 @@ const Message = ({ messegeInfo }) => {
   getDoc(doc(firestore, "users", messegeInfo.ownerID)).then((doc) =>
     setUserMessagePhoto(doc.data().photoURL)
   );
-
-  function getTime(seconds) {
-    return moment(seconds * 1000)
-      .startOf("minutes")
-      .fromNow();
-  }
 
   return (
     <div className="message">
@@ -64,6 +58,7 @@ const Message = ({ messegeInfo }) => {
                     alt=""
                   ></img>
                 </div>
+
                 <div
                   className={
                     isHover
@@ -73,6 +68,7 @@ const Message = ({ messegeInfo }) => {
                 >
                   reply
                 </div>
+
                 <div
                   className={
                     isHover

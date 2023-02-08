@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import { AuthContext } from ".";
+import { AuthContext } from "./core/context/authContext";
 import "./App.scss";
-import { publicRoutes, privateRoutes } from "./routes";
-import Preloader from "./components/ChatComponents/Preloader";
+import { publicRoutes, privateRoutes } from "./routes/routes";
+import Preloader from "./components/Other/Preloader";
 
 function App() {
   const { authUser } = useContext(AuthContext);
@@ -15,6 +15,7 @@ function App() {
         <Preloader></Preloader>
       </div>
     );
+
   return (
     <div className="App">
       <BrowserRouter>

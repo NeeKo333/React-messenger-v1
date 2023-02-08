@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import InputMessage from "./InputMessage";
 import Messages from "./Messages";
-import { ChatContext } from "../../chatContext";
-import { firestore, AuthContext } from "../..";
+import { ChatContext } from "../../core/context/chatContext";
+import { firestore, AuthContext } from "../../core/context/authContext";
 import DeleteChatPopup from "./DeleteChatPopup";
 import {
   doc,

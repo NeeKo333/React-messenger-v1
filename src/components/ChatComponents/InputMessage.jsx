@@ -1,5 +1,9 @@
-import { AuthContext, storage, firestore } from "../..";
-import { ChatContext } from "../../chatContext";
+import {
+  AuthContext,
+  storage,
+  firestore,
+} from "../../core/context/authContext";
+import { ChatContext } from "../../core/context/chatContext";
 import { useContext, useState, useRef } from "react";
 import {
   arrayUnion,
@@ -30,11 +34,22 @@ const InputMessage = ({ replyMessage, getPeply }) => {
   const [pictureVisible, setPictureVisible] = useState(false); //previewVisible
   const fileInputRef = useRef(null); // Ref to input to reset the file when deleting through the preview
 
+  async function checkingExistenceChat() {
+    const res = await getDoc(doc(firestore, "userChats", authUser.uid));
+    if (res.data()[data.chatId]) {
+    } else await dispatch({ type: "reset", payload: authUser });
+  }
+
+  function setInputTextHandler(e) {
+    setInputText(e.target.value.slice(0, 250));
+    checkingExistenceChat();
+  }
+
   async function sendMessage(e, inputMessage) {
     const message = inputMessage;
     e.preventDefault();
     inputFile ? sendFileAndText() : sendText();
-
+    e.target.reset();
     if (showEmoji) setShowEmoji(false);
 
     function sendFileAndText() {
@@ -135,6 +150,19 @@ const InputMessage = ({ replyMessage, getPeply }) => {
     setInputText(inputText + e.emoji);
   }
 
+  function uploadFile(e) {
+    if (e.target.files[0].size <= 100000000) {
+      Freader.readAsDataURL(e.target.files[0]);
+      setInputFile(e.target.files[0]);
+    } else alert("File size can not be larger than 100MB!");
+  }
+
+  function deletePreviewHandler() {
+    setPictureVisible(false);
+    setInputFile("");
+    fileInputRef.current.value = "";
+  }
+
   const Freader = new FileReader();
   Freader.onload = function (e) {
     setPicture(e.target.result);
@@ -160,16 +188,12 @@ const InputMessage = ({ replyMessage, getPeply }) => {
       <form
         onSubmit={(e) => {
           sendMessage(e, inputText);
-          e.target.reset();
         }}
         className="inputMessageContainer"
       >
         <input
           onChange={async (e) => {
-            setInputText(e.target.value.slice(0, 250));
-            const res = await getDoc(doc(firestore, "userChats", authUser.uid));
-            if (res.data()[data.chatId]) {
-            } else await dispatch({ type: "reset", payload: authUser });
+            setInputTextHandler(e);
           }}
           value={inputText}
           className="inputMessage"
@@ -179,10 +203,7 @@ const InputMessage = ({ replyMessage, getPeply }) => {
         <input
           className="hide"
           onChange={(e) => {
-            if (e.target.files[0].size <= 100000000) {
-              Freader.readAsDataURL(e.target.files[0]);
-              setInputFile(e.target.files[0]);
-            } else alert("File size can not be larger than 100MB!");
+            uploadFile(e);
           }}
           ref={fileInputRef}
           type="file"
@@ -193,11 +214,7 @@ const InputMessage = ({ replyMessage, getPeply }) => {
         {pictureVisible && (
           <Preview
             previwSrc={picture && picture}
-            deletePreview={() => {
-              setPictureVisible(false);
-              setInputFile("");
-              fileInputRef.current.value = "";
-            }}
+            deletePreview={deletePreviewHandler}
           ></Preview>
         )}
 

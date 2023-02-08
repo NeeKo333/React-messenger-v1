@@ -11,7 +11,7 @@ import {
   serverTimestamp,
   Timestamp,
 } from "firebase/firestore";
-import { AuthContext, firestore } from "../..";
+import { AuthContext, firestore } from "../../core/context/authContext";
 import { motion } from "framer-motion";
 
 const UserSearch = () => {
@@ -129,6 +129,7 @@ const UserSearch = () => {
               <img src={searchedUser.photoURL} alt=""></img>
             </div>
           </div>
+
           <div className="userSearchedChatTitle">
             Click to add user in your chat list!
           </div>

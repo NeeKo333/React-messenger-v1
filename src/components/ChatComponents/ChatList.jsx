@@ -6,10 +6,10 @@ import {
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
-import { firestore, AuthContext } from "../..";
-import { ChatContext } from "../../chatContext";
-import moment from "moment";
+import { firestore, AuthContext } from "../../core/context/authContext";
+import { ChatContext } from "../../core/context/chatContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { getTime } from "../../helpers/getTime";
 
 const ChatList = () => {
   const { authUser } = useContext(AuthContext);
@@ -80,12 +80,6 @@ const ChatList = () => {
     unreadMessages().then((data) => setUnreadMessages(data));
     getPhotos().then((data) => setAvatars(data));
   }, [chatList]);
-
-  function getTime(seconds) {
-    return moment(seconds * 1000)
-      .startOf("minutes")
-      .fromNow();
-  }
 
   async function pickChat(user) {
     dispatch({ type: "change_user", payload: user });

@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { onSnapshot, doc, updateDoc } from "firebase/firestore";
 import Message from "./Message";
-import { ChatContext } from "../../chatContext";
-import { firestore, AuthContext } from "../..";
+import { ChatContext } from "../../core/context/chatContext";
+import { firestore, AuthContext } from "../../core/context/authContext";
 import EditMessagePopup from "./EditMessagePopup";
 
 const Messages = ({ getReply }) => {
@@ -112,21 +112,25 @@ const Messages = ({ getReply }) => {
     }
   }
 
+  function messageClickHandler(e) {
+    getCurrentMessage(e);
+    if (e.target.className === "deleteMessage active") {
+      deleteMessage(e.target);
+    }
+    if (
+      e.target.className === "replyMessageButton active" ||
+      e.target.className === "replyMessageButton active owner"
+    ) {
+      replyToMessage(e);
+    }
+  }
+
   return (
     <div
       onScroll={(e) => scrollHendler(e)}
       className="messages"
       onClick={(e) => {
-        getCurrentMessage(e);
-        if (e.target.className === "deleteMessage active") {
-          deleteMessage(e.target);
-        }
-        if (
-          e.target.className === "replyMessageButton active" ||
-          e.target.className === "replyMessageButton active owner"
-        ) {
-          replyToMessage(e);
-        }
+        messageClickHandler(e);
       }}
     >
       {popup && (

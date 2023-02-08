@@ -1,5 +1,5 @@
 import { useContext, createContext, useReducer } from "react";
-import { AuthContext } from ".";
+import { AuthContext } from "./authContext";
 
 export const ChatContext = createContext(null);
 

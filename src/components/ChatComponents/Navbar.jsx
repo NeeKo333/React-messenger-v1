@@ -1,6 +1,11 @@
 import { signOut } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { auth, storage, AuthContext, firestore } from "../..";
+import {
+  auth,
+  storage,
+  AuthContext,
+  firestore,
+} from "../../core/context/authContext";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
@@ -40,6 +45,7 @@ const Navbar = () => {
     e.target.reset();
     setAvatarIsSelected(false);
   }
+
   return (
     <div className="userInfo">
       <div className="userInfoConteiner">
@@ -47,6 +53,7 @@ const Navbar = () => {
           <img className="mainUserAvatar" src={userPhoto} alt=""></img>
           <span className="userName">{userName}</span>
         </div>
+
         <div className="userUploadAvatarConteiner">
           <form onSubmit={(e) => uploadAvatar(e)}>
             <input
@@ -56,6 +63,7 @@ const Navbar = () => {
               className="hide"
               onChange={() => setAvatarIsSelected(true)}
             ></input>
+
             <motion.label
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -68,6 +76,7 @@ const Navbar = () => {
             >
               <img className="uploadImg" src="/img/upload.png" alt=""></img>
             </motion.label>
+
             <button
               className={
                 avatarIsSelected ? "uploadAvatarBtn active" : "uploadAvatarBtn"
@@ -78,6 +87,7 @@ const Navbar = () => {
           </form>
         </div>
       </div>
+
       <motion.a
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

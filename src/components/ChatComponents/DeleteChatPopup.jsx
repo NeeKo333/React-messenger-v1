@@ -1,13 +1,16 @@
-import React from "react";
 const DeleteChatPopup = ({ closePopup, submitHandler }) => {
+  function closePopupHandler(e) {
+    if (
+      e.target.tagName !== "deleteChatPopupContent" &&
+      e.target.tagName !== "BUTTON"
+    )
+      closePopup();
+  }
+
   return (
     <div
       onClick={(e) => {
-        if (
-          e.target.tagName !== "deleteChatPopupContent" &&
-          e.target.tagName !== "BUTTON"
-        )
-          closePopup();
+        closePopupHandler(e);
       }}
       className="deleteChatPopup"
     >

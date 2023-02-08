@@ -7,7 +7,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { auth, firestore } from "../..";
+import { auth, firestore } from "../../core/context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const Registration = () => {
