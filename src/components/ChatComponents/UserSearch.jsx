@@ -85,12 +85,12 @@ const UserSearch = () => {
 
   if (searchedUser.empty) {
     return (
-      <div className="userSearchConteiner">
+      <div className="user-search-conteiner">
         <input
           onChange={(e) => setSearchUserName(e.target.value)}
           onKeyDown={(e) => searchOnFirestore(e)}
           value={searchUserName}
-          className="userSearch"
+          className="user-search"
           placeholder="Search user"
         ></input>
         <motion.div
@@ -98,21 +98,21 @@ const UserSearch = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15 }}
-          className="userSearchedChat"
+          className="user-searched-chat"
         >
-          <div className="userSearchedChatTitle">User not found!</div>
+          <div className="user-searched-chat-title">User not found!</div>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="userSearchConteiner">
+    <div className="user-search-conteiner">
       <input
         onChange={(e) => setSearchUserName(e.target.value)}
         onKeyDown={(e) => searchOnFirestore(e)}
         value={searchUserName}
-        className="userSearch"
+        className="user-search"
         placeholder="Search user"
       ></input>
       {Object.keys(searchedUser).length > 0 ? (
@@ -120,17 +120,17 @@ const UserSearch = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.15 }}
-          className="userSearchedChat"
+          className="user-searched-chat"
           onClick={() => addChatWithTwoUsers()}
         >
-          <div className="userChatInfo">
-            <div className="userChatUserName">{searchedUser.name}</div>
-            <div className="userSearchedChatUserAvatar">
+          <div className="user-chat-info">
+            <div className="user-chat-user-name">{searchedUser.name}</div>
+            <div className="user-searched-chat-user-avatar">
               <img src={searchedUser.photoURL} alt=""></img>
             </div>
           </div>
 
-          <div className="userSearchedChatTitle">
+          <div className="user-searched-chat-title">
             Click to add user in your chat list!
           </div>
         </motion.div>

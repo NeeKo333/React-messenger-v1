@@ -56,9 +56,9 @@ const Registration = () => {
   }
 
   return (
-    <div className="registerFormConteiner">
+    <div className="register-form-conteiner">
       <img src="/img/logo.svg" alt="logo"></img>
-      <div className="registerFormWrapper">
+      <div className="register-form-wrapper">
         <h2>Registration</h2>
         <h3>
           Already have account? <Link to="/login">Log in</Link>{" "}
@@ -69,9 +69,9 @@ const Registration = () => {
           <input type="password" placeholder="Password" />
           <button>Submit</button>
         </form>
-        <div className="copyInfo">
+        <div className="copy-info">
           <p className="lang">EN</p>
-          <p className="footerName">CHEESE</p>
+          <p className="footer-name">CHEESE</p>
         </div>
       </div>
     </div>

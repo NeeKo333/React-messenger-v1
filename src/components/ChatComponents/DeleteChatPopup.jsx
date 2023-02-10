@@ -1,7 +1,7 @@
 const DeleteChatPopup = ({ closePopup, submitHandler }) => {
   function closePopupHandler(e) {
     if (
-      e.target.tagName !== "deleteChatPopupContent" &&
+      e.target.tagName !== "delete-chat-popup-content" &&
       e.target.tagName !== "BUTTON"
     )
       closePopup();
@@ -12,14 +12,14 @@ const DeleteChatPopup = ({ closePopup, submitHandler }) => {
       onClick={(e) => {
         closePopupHandler(e);
       }}
-      className="deleteChatPopup"
+      className="delete-chat-popup"
     >
       <form
-        className="deleteChatPopupContent"
+        className="delete-chat-popup-content"
         onSubmit={(e) => submitHandler(e)}
       >
         <div>Do you really want to delete the chat?</div>
-        <div className="deleteChatPopupButtons">
+        <div className="delete-chat-popup-buttons">
           <button type="submit">Submit</button>
           <button onClick={closePopup}>Close</button>
         </div>

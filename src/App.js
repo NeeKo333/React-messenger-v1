@@ -11,7 +11,7 @@ function App() {
 
   if (authUser === "")
     return (
-      <div className="preloaderApp">
+      <div className="preloader-app">
         <Preloader></Preloader>
       </div>
     );

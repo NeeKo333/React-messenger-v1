@@ -36,7 +36,7 @@
 
     <script>
       let observer = new MutationObserver((mutationRecords) => {
-        twemoji.parse(document.querySelector(".chatList"), {
+        twemoji.parse(document.querySelector(".chat-list"), {
           base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/",
         });
         twemoji.parse(document.querySelector(".chat"), {

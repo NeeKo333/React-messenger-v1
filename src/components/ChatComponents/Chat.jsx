@@ -51,20 +51,20 @@ const Chat = () => {
 
   if (data.chatId === "null") {
     return (
-      <div className="notSelectedChat">
-        <img className="mousePicture" src="/img/mouse.svg" alt=""></img>
+      <div className="not-selected-chat">
+        <img className="mouse-picture" src="/img/mouse.svg" alt=""></img>
       </div>
     );
   }
 
   return (
     <div onClick={updateCheckTime} className="chat">
-      <div className="chatHeader">
-        <span className="chatHeaderUserName">{data.user?.name}</span>
+      <div className="chat-header">
+        <span className="chat-header-user-name">{data.user?.name}</span>
 
         <motion.a
           whileHover={{ scale: 1.1 }}
-          className="deleteChat"
+          className="delete-chat"
           onClick={() => setPopup(true)}
         >
           <img src="/img/deleteChat.svg" alt=""></img>

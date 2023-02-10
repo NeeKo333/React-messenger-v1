@@ -1,10 +1,10 @@
 const Preview = ({ previwSrc, deletePreview }) => {
   return (
-    <div className="messagePreview" onClick={deletePreview}>
-      <span className="messagePreviewDelete">
+    <div className="message-preview" onClick={deletePreview}>
+      <span className="message-preview-delete">
         <img src="/img/closePreview.png"></img>
       </span>
-      <img className="messagePhotoPreview" src={previwSrc}></img>
+      <img className="message-photo-preview" src={previwSrc}></img>
     </div>
   );
 };

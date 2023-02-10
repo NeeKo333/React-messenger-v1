@@ -20,9 +20,9 @@ const Login = () => {
   }
 
   return (
-    <div className="registerFormConteiner">
+    <div className="register-form-conteiner">
       <img src="/img/logo.svg" alt="logo"></img>
-      <div className="registerFormWrapper">
+      <div className="register-form-wrapper">
         <h2>Login</h2>
         <h3>
           Don't have account? <Link to="/registration">Register</Link>
@@ -32,9 +32,9 @@ const Login = () => {
           <input type="password" placeholder="Password" />
           <button>Login</button>
         </form>
-        <div className="copyInfo">
+        <div className="copy-info">
           <p className="lang">EN</p>
-          <p className="footerName">CHEESE</p>
+          <p className="footer-name">CHEESE</p>
         </div>
       </div>
     </div>

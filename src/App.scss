@@ -78,7 +78,7 @@ img {
 .twemoji {
   max-width: 20px;
 }
-.preloaderApp {
+.preloader-app {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -89,7 +89,7 @@ img {
   text-align: center;
 }
 
-.registerFormConteiner {
+.register-form-conteiner {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -103,7 +103,7 @@ img {
     max-width: 150px;
     max-height: 100px;
   }
-  .registerFormWrapper {
+  .register-form-wrapper {
     padding: 20px 20px;
     width: 500px;
     margin-bottom: 250px;
@@ -150,7 +150,7 @@ img {
         }
       }
     }
-    .copyInfo {
+    .copy-info {
       padding-top: 25px;
       position: relative;
       font-family: "Lusitana";
@@ -165,14 +165,14 @@ img {
         left: 0;
         cursor: pointer;
       }
-      .footerName {
+      .footer-name {
         padding: auto;
       }
     }
   }
 }
 
-.homePage {
+.home-page {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -193,8 +193,8 @@ img {
     border-radius: 8px;
     overflow: hidden;
 
-    .userSearchConteiner {
-      .userSearchedChat {
+    .user-search-conteiner {
+      .user-searched-chat {
         display: flex;
         align-items: center;
         margin: 10px 0px 10px 0px;
@@ -203,12 +203,12 @@ img {
         height: 100px;
         cursor: pointer;
         background-color: #ffe4c4;
-        .userChatInfo {
+        .user-chat-info {
           display: flex;
           flex-direction: column;
           padding: 10px 0px 0px 10px;
           gap: 5px;
-          .userChatUserName {
+          .user-chat-user-name {
             text-align: left;
             padding-left: 10px;
             font-family: "Montserrat";
@@ -218,7 +218,7 @@ img {
             line-height: 15px;
             color: #7d4008;
           }
-          .userSearchedChatUserAvatar {
+          .user-searched-chat-user-avatar {
             width: 50px;
             height: 50px;
 
@@ -230,7 +230,7 @@ img {
             }
           }
         }
-        .userSearchedChatTitle {
+        .user-searched-chat-title {
           padding-top: 20px;
           flex: 1 1 auto;
           font-family: "Montserrat";
@@ -241,7 +241,7 @@ img {
           color: #7d4008;
         }
       }
-      .userSearch {
+      .user-search {
         background-color: transparent;
         width: 85%;
         padding: 10px 5px 1px 5px;
@@ -254,30 +254,30 @@ img {
       background-color: #fdfaf4;
       max-width: 348px;
       position: relative;
-      .userInfo {
+      .user-info {
         display: flex;
         align-items: center;
         justify-content: center;
         justify-content: space-between;
         padding: 10px 20px;
         background-color: #fdfaf4;
-        .userInfoConteiner {
+        .user-info-conteiner {
           display: flex;
           flex-direction: column;
           gap: 10px;
 
-          .userNameAndAvatarConteiner {
+          .user-name-and-avatar-conteiner {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
-            .mainUserAvatar {
+            .main-user-avatar {
               width: 80px;
               height: 80px;
               border-radius: 50%;
               margin-left: 5px;
             }
-            .userName {
+            .user-name {
               font-family: "Montserrat";
               font-style: normal;
               font-weight: 400;
@@ -286,10 +286,10 @@ img {
               color: #7d4008;
             }
           }
-          .userUploadAvatarConteiner {
+          .user-upload-avatar-conteiner {
             form {
               display: flex;
-              .uploadAvatarLabel {
+              .upload-avatar-label {
                 text-align: left;
                 img {
                   max-width: 25px;
@@ -310,7 +310,7 @@ img {
                 }
               }
 
-              .uploadAvatarBtn {
+              .upload-avatar-btn {
                 padding: 3px 5px;
                 background-color: rgba($color: #000000, $alpha: 0.3);
                 border-radius: 3px;
@@ -328,7 +328,7 @@ img {
             }
           }
         }
-        .uploadImg {
+        .upload-img {
           width: 30px;
           height: 30px;
           margin: 0px 5px;
@@ -341,14 +341,14 @@ img {
         }
       }
 
-      .chatList {
+      .chat-list {
         max-width: 100%;
         height: 530px;
         margin-top: 20px;
         background-color: #fdfaf4;
         overflow-y: auto;
         border-top: 2px solid gray;
-        .userChat {
+        .user-chat {
           max-width: 100%;
           overflow: hidden;
           position: relative;
@@ -361,12 +361,12 @@ img {
           }
           height: 100px;
           border-bottom: 1px solid gray;
-          .userChatInfo {
+          .user-chat-info {
             display: flex;
             flex-direction: column;
             padding: 10px 0px 0px 10px;
             gap: 5px;
-            .userChatUserName {
+            .user-chat-user-name {
               text-align: left;
               padding-left: 10px;
               font-family: "Montserrat";
@@ -376,7 +376,7 @@ img {
               line-height: 15px;
               color: #7d4008;
             }
-            .userChatUserAvatar {
+            .user-chat-user-avatar {
               width: 50px;
               height: 50px;
               img {
@@ -388,7 +388,7 @@ img {
             }
           }
 
-          .userChatLastMessage {
+          .user-chat-last-message {
             text-align: left;
             padding-left: 15px;
             padding-top: 5px;
@@ -406,7 +406,7 @@ img {
             color: black;
           }
 
-          .userChatLastMessageTime {
+          .user-chat-last-message-time {
             position: absolute;
             right: 20px;
             bottom: 10px;
@@ -417,7 +417,7 @@ img {
             line-height: 15px;
             color: grey;
           }
-          .userChatUnreadMessages {
+          .user-chat-unread-messages {
             font-family: "Montserrat";
             display: flex;
             justify-content: center;
@@ -431,7 +431,7 @@ img {
             border-radius: 50%;
           }
         }
-        .searchFriendsTitle {
+        .search-friends-title {
           padding-top: 20px;
           font-family: "Montserrat";
           font-style: normal;
@@ -458,7 +458,7 @@ img {
       }
     }
 
-    .notSelectedChat {
+    .not-selected-chat {
       flex: 2;
       width: 880px;
       background-color: #fdfaf4;
@@ -479,7 +479,7 @@ img {
       border-left: 1px solid grey;
       position: relative;
 
-      .chatHeader {
+      .chat-header {
         min-height: 80px;
         width: 100%;
         background-color: inherit;
@@ -487,11 +487,11 @@ img {
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid gray;
-        .chatHeaderUserName {
+        .chat-header-user-name {
           font-weight: 600;
           padding-left: 15px;
         }
-        .deleteChat {
+        .delete-chat {
           margin-right: 15px;
           width: 30px;
           height: 30px;
@@ -517,16 +517,16 @@ img {
             background-color: rgba($color: #f7e9cc, $alpha: 1);
             cursor: pointer;
           }
-          .messageInfo {
+          .message-info {
             display: flex;
             gap: 10px;
 
-            .messageUserBody {
+            .message-user-body {
               display: flex;
               flex-direction: column;
               gap: 10px;
               position: relative;
-              .messageUserAvatar {
+              .message-user-avatar {
                 width: 40px;
                 height: 40px;
                 img {
@@ -535,7 +535,7 @@ img {
                   border-radius: 50%;
                 }
               }
-              .messageOwnerName {
+              .message-owner-name {
                 position: absolute;
                 top: -15px;
                 left: 4px;
@@ -547,12 +547,12 @@ img {
               }
             }
 
-            .messageBody {
+            .message-body {
               display: flex;
               flex-direction: column;
               max-width: 80%;
               overflow: hidden;
-              .messageOwnerNameRight {
+              .message-owner-name-right {
                 text-align: right;
                 font-family: "Montserrat";
                 font-style: normal;
@@ -561,7 +561,7 @@ img {
                 color: #7d4008;
                 padding: 0px 5px 3px 0px;
               }
-              .messageOwnerNameLeft {
+              .message-owner-name-left {
                 text-align: left;
                 font-family: "Montserrat";
                 font-style: normal;
@@ -571,7 +571,7 @@ img {
                 padding: 0px 0px 3px 5px;
               }
 
-              .messageContent {
+              .message-content {
                 max-width: 100%;
                 background: #fffefe;
                 border: 1px solid rgba(0, 0, 0, 0.5);
@@ -584,7 +584,7 @@ img {
                 gap: 5px;
                 flex: 1 1 auto;
                 position: relative;
-                .editMessage {
+                .edit-message {
                   display: none;
                   position: absolute;
                   top: 1px;
@@ -597,7 +597,7 @@ img {
                     display: block;
                   }
                 }
-                .deleteMessage {
+                .delete-message {
                   display: none;
                   position: absolute;
                   top: 1px;
@@ -608,7 +608,7 @@ img {
                     display: block;
                   }
                 }
-                .replyMessageButton {
+                .reply-message-button {
                   display: none;
                   position: absolute;
                   top: 1px;
@@ -621,7 +621,7 @@ img {
                     }
                   }
                 }
-                .messageReply {
+                .message-reply {
                   display: flex;
                   flex-direction: column;
                   padding-left: 3px;
@@ -636,7 +636,7 @@ img {
                   word-wrap: break-word;
                   border-left: 1px solid gray;
                 }
-                .messageText {
+                .message-text {
                   padding-left: 3px;
                   max-width: 100%;
                   font-family: "Montserrat";
@@ -648,12 +648,12 @@ img {
                   color: #000000;
                   word-wrap: break-word;
                 }
-                .messagePhoto,
-                .messageVideo {
+                .message-photo,
+                .message-video {
                   max-width: 100%;
                   border-radius: 6px;
                 }
-                .messageEditedMark {
+                .message-edited-mark {
                   align-self: flex-end;
                   font-family: "Montserrat";
                   font-style: normal;
@@ -662,7 +662,7 @@ img {
                   color: grey;
                 }
               }
-              .messageTime {
+              .message-time {
                 text-align: right;
                 padding-right: 4px;
                 font-family: "Montserrat";
@@ -674,12 +674,12 @@ img {
               }
             }
 
-            &.myMessage {
-              .messageContent {
+            &.my-message {
+              .message-content {
                 background: #d1e3fd;
               }
               flex-direction: row-reverse;
-              .messageUserAvatar {
+              .message-user-avatar {
                 width: 40px;
                 height: 40px;
                 img {
@@ -698,15 +698,15 @@ img {
           width: 100px;
         }
       }
-      .inputMessageWrapper {
+      .input-message-wrapper {
         border-top: 1px solid grey;
         gap: 10px;
-        .replayMessageBody {
+        .replay-message-body {
           display: flex;
           gap: 10px;
           margin-top: 5px;
 
-          .replayMessageBlockOnInput {
+          .replay-message-block-on-input {
             width: 60%;
             padding: 10px 10px;
             margin-left: 10px;
@@ -714,7 +714,7 @@ img {
             border-radius: 6px;
             position: relative;
 
-            .replayMessageContent {
+            .replay-message-content {
               border-left: 1px solid grey;
               padding-left: 5px;
               min-width: 30%;
@@ -727,7 +727,7 @@ img {
               font-size: 14px;
               color: grey;
             }
-            .removeReply {
+            .remove-reply {
               position: absolute;
               top: 2px;
               right: 2px;
@@ -739,9 +739,9 @@ img {
             }
           }
         }
-        .inputMessageContainer {
+        .input-message-container {
           display: flex;
-          .inputMessage {
+          .input-message {
             flex: 8;
             height: 40px;
             background-color: inherit;
@@ -762,8 +762,8 @@ img {
             }
           }
 
-          .uploadImgLabel {
-            .uploadImg {
+          .upload-img-label {
+            .upload-img {
               flex: 1;
               width: 30px;
               height: 30px;
@@ -771,7 +771,7 @@ img {
               cursor: pointer;
             }
           }
-          .emojiBtn {
+          .emoji-btn {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -781,14 +781,14 @@ img {
               max-width: 30px;
             }
           }
-          .sendMessage {
+          .send-message {
             flex: 0.5;
             padding-right: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: transparent;
-            .sendMessageTriangle {
+            .send-message-triangle {
               width: 0;
               height: 0;
               border-top: 15px solid transparent;
@@ -805,9 +805,9 @@ img {
             right: 90px !important;
             width: 300px !important;
           }
-          .messagePreview {
+          .message-preview {
             position: relative;
-            .messagePreviewDelete {
+            .message-preview-delete {
               position: absolute;
               z-index: 99;
               top: 0px;
@@ -818,7 +818,7 @@ img {
                 cursor: pointer;
               }
             }
-            .messagePhotoPreview {
+            .message-photo-preview {
               opacity: 0.7;
               width: 40px;
               height: 40px;
@@ -830,8 +830,8 @@ img {
   }
 }
 
-.EditMessagePopup,
-.deleteChatPopup {
+.edit-message-popup,
+.delete-chat-popup {
   z-index: 99;
   position: fixed;
   left: 0;
@@ -845,8 +845,8 @@ img {
   align-items: center;
   gap: 10px;
 
-  .EditMessagePopupContent,
-  .deleteChatPopupContent {
+  .edit-message-popup-content,
+  .delete-chat-popup-content {
     width: 450px;
     height: 200px;
     background-color: #fdfaf4;
@@ -861,8 +861,8 @@ img {
       background-color: inherit;
       border-bottom: 1px solid grey;
     }
-    .EditMessagePopupButtons,
-    .deleteChatPopupButtons {
+    .edit-message-popup-buttons,
+    .delete-chat-popup-buttons {
       display: flex;
       gap: 15px;
       button {

@@ -47,14 +47,14 @@ const Navbar = () => {
   }
 
   return (
-    <div className="userInfo">
-      <div className="userInfoConteiner">
-        <div className="userNameAndAvatarConteiner">
-          <img className="mainUserAvatar" src={userPhoto} alt=""></img>
-          <span className="userName">{userName}</span>
+    <div className="user-info">
+      <div className="user-info-conteiner">
+        <div className="user-name-and-avatar-conteiner">
+          <img className="main-user-avatar" src={userPhoto} alt=""></img>
+          <span className="user-name">{userName}</span>
         </div>
 
-        <div className="userUploadAvatarConteiner">
+        <div className="user-upload-avatar-conteiner">
           <form onSubmit={(e) => uploadAvatar(e)}>
             <input
               type="file"
@@ -70,16 +70,18 @@ const Navbar = () => {
               htmlFor="uploadAvatar"
               className={
                 avatarIsSelected
-                  ? "uploadAvatarLabel active"
-                  : "uploadAvatarLabel"
+                  ? "upload-avatar-label active"
+                  : "upload-avatar-label"
               }
             >
-              <img className="uploadImg" src="/img/upload.png" alt=""></img>
+              <img className="upload-img" src="/img/upload.png" alt=""></img>
             </motion.label>
 
             <button
               className={
-                avatarIsSelected ? "uploadAvatarBtn active" : "uploadAvatarBtn"
+                avatarIsSelected
+                  ? "upload-avatar-btn active"
+                  : "upload-avatar-btn"
               }
             >
               Upload Avatar

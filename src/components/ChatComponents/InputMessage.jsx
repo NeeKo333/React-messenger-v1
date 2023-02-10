@@ -170,15 +170,15 @@ const InputMessage = ({ replyMessage, getPeply }) => {
   };
 
   return (
-    <div className="inputMessageWrapper">
+    <div className="input-message-wrapper">
       {replyMessage && (
-        <div className="replayMessageBody">
-          <div className="replayMessageBlockOnInput">
-            <div className="replayMessageContent">
+        <div className="replay-message-body">
+          <div className="replay-message-block-on-input">
+            <div className="replay-message-content">
               <p>{replyMessage.ownerName}</p>
               <span>{replyMessage.text}</span>
             </div>
-            <span className="removeReply" onClick={() => getPeply("")}>
+            <span className="remove-reply" onClick={() => getPeply("")}>
               <img src="/img/closePreview.png"></img>
             </span>
           </div>
@@ -189,14 +189,14 @@ const InputMessage = ({ replyMessage, getPeply }) => {
         onSubmit={(e) => {
           sendMessage(e, inputText);
         }}
-        className="inputMessageContainer"
+        className="input-message-container"
       >
         <input
           onChange={async (e) => {
             setInputTextHandler(e);
           }}
           value={inputText}
-          className="inputMessage"
+          className="input-message"
           placeholder="Enter message..."
         ></input>
 
@@ -222,15 +222,15 @@ const InputMessage = ({ replyMessage, getPeply }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           htmlFor="uploadImg"
-          className="uploadImgLabel"
+          className="upload-img-label"
         >
-          <img src="/img/upload.png" alt="" className="uploadImg"></img>
+          <img src="/img/upload.png" alt="" className="upload-img"></img>
         </motion.label>
 
         <motion.a
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="emojiBtn"
+          className="emoji-btn"
           onClick={() => setShowEmoji(!showEmoji)}
         >
           <img src="/img/emoji.png"></img>
@@ -247,11 +247,11 @@ const InputMessage = ({ replyMessage, getPeply }) => {
         )}
 
         <motion.button
-          className="sendMessage"
+          className="send-message"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <div className="sendMessageTriangle"></div>
+          <div className="send-message-triangle"></div>
         </motion.button>
       </form>
     </div>

@@ -3,7 +3,7 @@ import Chat from "../ChatComponents/Chat";
 
 const Home = () => {
   return (
-    <div className="homePage">
+    <div className="home-page">
       <div className="conteiner">
         <Sidebar></Sidebar>
         <Chat></Chat>

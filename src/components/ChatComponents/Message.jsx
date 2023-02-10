@@ -19,40 +19,42 @@ const Message = ({ messegeInfo }) => {
         data-owner={messegeInfo.ownerID}
         className={
           messegeInfo.ownerID === authUser.uid
-            ? "messageInfo message myMessage"
-            : " messageInfo message"
+            ? "message-info message my-message"
+            : " message-info message"
         }
       >
-        <div className="messageUserBody">
-          <div className="messageUserAvatar">
+        <div className="message-user-body">
+          <div className="message-user-avatar">
             <img src={userMessagePhoto} alt="" />
           </div>
         </div>
 
-        <div className="messageBody">
+        <div className="message-body">
           <div
             className={
               messegeInfo.ownerID === authUser.uid
-                ? "messageOwnerNameRight"
-                : "messageOwnerNameLeft"
+                ? "message-owner-name-right"
+                : "message-owner-name-left"
             }
           >
             {messegeInfo.ownerName}
           </div>
 
           <div
-            className="messageContent"
+            className="message-content"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
           >
             {messegeInfo.ownerID === authUser.uid ? (
               <>
                 <div
-                  className={isHover ? "deleteMessage active" : "deleteMessage"}
+                  className={
+                    isHover ? "delete-message active" : "delete-message"
+                  }
                 >
                   <img
                     className={
-                      isHover ? "deleteMessage active" : "deleteMessage"
+                      isHover ? "delete-message active" : "delete-message"
                     }
                     src="/img/deleteMessage.svg"
                     alt=""
@@ -62,8 +64,8 @@ const Message = ({ messegeInfo }) => {
                 <div
                   className={
                     isHover
-                      ? "replyMessageButton active owner"
-                      : "replyMessageButton"
+                      ? "reply-message-button active owner"
+                      : "reply-message-button"
                   }
                 >
                   reply
@@ -72,12 +74,12 @@ const Message = ({ messegeInfo }) => {
                 <div
                   className={
                     isHover
-                      ? "editMessage active editMessageDiv"
-                      : "editMessage"
+                      ? "edit-message active edit-message-div"
+                      : "edit-message"
                   }
                 >
                   <img
-                    className={isHover ? "editMessage active" : "editMessage"}
+                    className={isHover ? "edit-message active" : "edit-message"}
                     src="/img/editMessage.svg"
                     alt=""
                   ></img>
@@ -86,7 +88,9 @@ const Message = ({ messegeInfo }) => {
             ) : (
               <div
                 className={
-                  isHover ? "replyMessageButton active" : "replyMessageButton"
+                  isHover
+                    ? "reply-message-button active"
+                    : "reply-message-button"
                 }
               >
                 reply
@@ -94,7 +98,7 @@ const Message = ({ messegeInfo }) => {
             )}
 
             {messegeInfo.replay && (
-              <div className="messageReply">
+              <div className="message-reply">
                 <span>{messegeInfo.replay.ownerName}</span>
                 <span>{messegeInfo.replay.text}</span>
                 {messegeInfo.replay.photoURL && (
@@ -103,11 +107,11 @@ const Message = ({ messegeInfo }) => {
               </div>
             )}
 
-            <span className="messageText">{messegeInfo.text}</span>
+            <span className="message-text">{messegeInfo.text}</span>
 
             {messegeInfo.messagePhoto ? (
               <img
-                className="messagePhoto"
+                className="message-photo"
                 src={messegeInfo.messagePhoto}
                 alt=""
               ></img>
@@ -117,7 +121,7 @@ const Message = ({ messegeInfo }) => {
 
             {messegeInfo.messageVideo ? (
               <video
-                className="messageVideo"
+                className="message-video"
                 src={messegeInfo.messageVideo}
                 alt=""
                 controls
@@ -126,11 +130,13 @@ const Message = ({ messegeInfo }) => {
               ""
             )}
 
-            <div className="messageEditedMark">
+            <div className="message-edited-mark">
               {messegeInfo.edited ? "edited" : ""}
             </div>
           </div>
-          <div className="messageTime">{getTime(messegeInfo.date.seconds)}</div>
+          <div className="message-time">
+            {getTime(messegeInfo.date.seconds)}
+          </div>
         </div>
       </div>
     </div>

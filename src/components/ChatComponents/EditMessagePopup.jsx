@@ -13,21 +13,21 @@ const EditMessagePopup = ({ submitHandler, closePopup, currentText }) => {
       onClick={(e) => {
         closePopupHandler(e);
       }}
-      className="EditMessagePopup"
+      className="edit-message-popup"
     >
       <form
-        className="EditMessagePopupContent"
+        className="edit-message-popup-content"
         onSubmit={(e) => submitHandler(e)}
       >
         <input
-          className="editMessageInput"
+          className="edit-message-input"
           type="text"
           placeholder="Edit message"
           value={previousText}
           onChange={(e) => setPreviousTex(e.target.value.slice(0, 250))}
         ></input>
 
-        <div className="EditMessagePopupButtons">
+        <div className="edit-message-popup-buttons">
           <button type="submit">Submit</button>
           <button onClick={closePopup}>Close</button>
         </div>

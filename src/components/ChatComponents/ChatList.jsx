@@ -94,7 +94,7 @@ const ChatList = () => {
   }
 
   return (
-    <div className="chatList">
+    <div className="chat-list">
       <AnimatePresence>
         {chatList.length > 0 ? (
           chatList.map((chat, index) => {
@@ -106,21 +106,21 @@ const ChatList = () => {
                 exit={{ opacity: 0, pointerEvents: "none" }}
                 key={chat[0]}
                 className={
-                  chat[0] === data.chatId ? "userChat active" : "userChat"
+                  chat[0] === data.chatId ? "user-chat active" : "user-chat"
                 }
                 onClick={() => pickChat(chat[1].userInfo)}
               >
-                <div className="userChatInfo">
-                  <span className="userChatUserName">
+                <div className="user-chat-info">
+                  <span className="user-chat-user-name">
                     {chat[1].userInfo.name}
                   </span>
 
-                  <div className="userChatUserAvatar">
+                  <div className="user-chat-user-avatar">
                     <img src={avatars[index]} alt=""></img>
                   </div>
                 </div>
 
-                <p className="userChatLastMessage">
+                <p className="user-chat-last-message">
                   {chat[1].userInfo.lastMessage
                     ? chat[1].userInfo.lastMessage.length > 15
                       ? chat[1].userInfo.lastMessage.slice(0, 15) + "..."
@@ -128,14 +128,14 @@ const ChatList = () => {
                     : ""}
                 </p>
 
-                <p className="userChatLastMessageTime">
+                <p className="user-chat-last-message-time">
                   {chat[1].userInfo.lastMessageTime?.seconds
                     ? getTime(chat[1].userInfo.lastMessageTime?.seconds)
                     : "Click and start chat..."}
                 </p>
 
                 {unreadMessages[index] && unreadMessages[index].length > 0 ? (
-                  <span className="userChatUnreadMessages">
+                  <span className="user-chat-unread-messages">
                     {unreadMessages[index].length}
                   </span>
                 ) : (
@@ -145,7 +145,7 @@ const ChatList = () => {
             );
           })
         ) : (
-          <h3 className="searchFriendsTitle">
+          <h3 className="search-friends-title">
             Search freinds and start your first chat 😀
           </h3>
         )}

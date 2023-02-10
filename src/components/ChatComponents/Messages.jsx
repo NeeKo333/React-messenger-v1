@@ -38,7 +38,7 @@ const Messages = ({ getReply }) => {
 
   function getCurrentMessage(e) {
     if (
-      e.target.className === "editMessage active" &&
+      e.target.className === "edit-message active" &&
       e.target.closest(".message").dataset.owner === authUser.uid
     ) {
       setPopup(true);
@@ -114,12 +114,12 @@ const Messages = ({ getReply }) => {
 
   function messageClickHandler(e) {
     getCurrentMessage(e);
-    if (e.target.className === "deleteMessage active") {
+    if (e.target.className === "delete-message active") {
       deleteMessage(e.target);
     }
     if (
-      e.target.className === "replyMessageButton active" ||
-      e.target.className === "replyMessageButton active owner"
+      e.target.className === "reply-message-button active" ||
+      e.target.className === "reply-message-button active owner"
     ) {
       replyToMessage(e);
     }
