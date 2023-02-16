@@ -102,8 +102,11 @@ const Messages = ({ getReply }) => {
   }
 
   function scrollHendler(e) {
-    if (e.target.scrollTop < 230) {
-      setCurrentPage(currentPage + 1);
+    if (
+      e.target.scrollTop < 230 &&
+      visibleMessages.length !== messages.length
+    ) {
+      setCurrentPage((currentPage) => currentPage + 1);
     }
   }
 
