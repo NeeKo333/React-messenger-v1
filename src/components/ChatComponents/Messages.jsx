@@ -7,7 +7,6 @@ import EditMessagePopup from "./EditMessagePopup";
 
 const Messages = ({ getReply }) => {
   const [messages, setMessages] = useState([]);
-  const [visibleMessages, setVisibleMessages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [popup, setPopup] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -27,10 +26,6 @@ const Messages = ({ getReply }) => {
       unsub();
     };
   }, [data.chatId]);
-
-  useEffect(() => {
-    setVisibleMessages(messages.slice(-15 * currentPage));
-  }, [currentPage, messages]);
 
   useEffect(() => {
     setTimeout(() => ref.current.scrollIntoView(), 300);
@@ -125,6 +120,12 @@ const Messages = ({ getReply }) => {
     }
   }
 
+  function getVisibleMessages() {
+    return messages.slice(-15 * currentPage);
+  }
+
+  const visibleMessages = getVisibleMessages();
+
   return (
     <div
       onScroll={(e) => scrollHendler(e)}
@@ -141,9 +142,12 @@ const Messages = ({ getReply }) => {
         />
       )}
 
-      {visibleMessages.map((message) => (
-        <Message key={message.id} messegeInfo={message}></Message>
-      ))}
+      {visibleMessages.map((message) => {
+        const stringifyMessage = JSON.stringify(message);
+        return (
+          <Message key={message.id} messegeInfo={stringifyMessage}></Message>
+        );
+      })}
 
       <div ref={ref}></div>
     </div>

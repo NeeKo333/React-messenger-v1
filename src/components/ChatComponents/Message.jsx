@@ -1,9 +1,10 @@
 import { AuthContext, firestore } from "../../core/context/authContext";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { getTime } from "../../helpers/getTime";
 
-const Message = ({ messegeInfo }) => {
+const Message = React.memo(({ messegeInfo }) => {
+  messegeInfo = JSON.parse(messegeInfo);
   const { authUser } = useContext(AuthContext);
   const [userMessagePhoto, setUserMessagePhoto] = useState(""); //user photo next to the message
   const [isHover, setIsHover] = useState(false); // display interaction buttons when hovering over a message
@@ -141,6 +142,6 @@ const Message = ({ messegeInfo }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Message;
